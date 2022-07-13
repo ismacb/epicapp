@@ -1,0 +1,13 @@
+const { Router } = require("express");
+const { validarJWT } = require("../middleware/validar-jwt");
+const { getAllTrainings, registerTrain, getTrain, getCoach, editTrain, deleteTrain } = require("../controllers/posts");
+
+const router = Router();
+
+router.get("/", validarJWT, getAllPosts);
+router.post("/register", validarJWT, registerPost);
+router.get("/post", validarJWT, getPost);
+router.put("/edit", validarJWT, editPost);
+router.delete("/delete", validarJWT, deletePost);
+
+module.exports = router;

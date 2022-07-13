@@ -6,7 +6,6 @@ const jwt = require("jsonwebtoken");
 //Funcion de login, hacer select y comparar la contraseña devolviendo el token
 const login = async(req, res) => {
     const { email, password } = req.body;
-    let usuario = null;
 
     try {
         pool.query("SELECT * FROM usuario WHERE email = ?", [email],
