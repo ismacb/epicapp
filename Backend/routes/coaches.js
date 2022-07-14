@@ -5,7 +5,7 @@ const { getAllCoaches, registerCoach, getCoach, getCustomersbyCoach, editCoach, 
 const router = Router();
 
 router.get("/", validarJWT, getAllCoaches);
-router.post("/register", validarJWT, registerCoach);
+router.post("/register", registerCoach);
 router.get("/coach", validarJWT, getCoach);
 router.get("/customers", validarJWT, getCustomersbyCoach);
 router.put("/edit", validarJWT, editCoach);

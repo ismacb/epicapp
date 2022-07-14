@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  base_url: "http://localhost:3000/epic",
+  base_url: "http://localhost:3000/api",
   registros_por_pagina: 10,
   url: "http://localhost:3306/",
 };

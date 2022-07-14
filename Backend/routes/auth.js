@@ -7,7 +7,6 @@ const { validarJWT } = require("../middleware/validar-jwt");
 const router = Router();
 
 router.post('/', [
-    validarJWT,
     check('password', 'El argumento password es obligatorio').not().isEmpty(),
     check('email', 'El argumento email es obligatorio').not().isEmpty(),
     validarCampos

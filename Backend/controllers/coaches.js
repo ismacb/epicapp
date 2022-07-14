@@ -28,16 +28,17 @@ const registerCoach = async(req, res) => {
     const salt = bcrypt.genSaltSync();
     const cpass = bcrypt.hashSync(req.body.password, salt);
     try {
-        pool.query("INSERT INTO usuario (rol, email, password, nick, nombre, apellidos, edad, telefono, titulacion) values" +
-            "('ENTRENADOR', '" +
-            req.body.email +
-            "' , '" + cpass + "' , '" +
+        pool.query("INSERT INTO usuario (rol, email, password, nick, nombre, apellidos, edad, telefono, titulacion) values('ENTRENADOR', '" +
+            req.body.email + "' , '" +
+            cpass + "' , '" +
             req.body.nick + "' , '" +
             req.body.nombre + "' , '" +
             req.body.apellidos + "' , " +
-            req.body.edad + " , " +
-            req.body.telefono + " , '" +
-            req.body.titulacion + "')",
+            req.body.edad +
+            /* " , " +
+                        req.body.telefono + " , '" +
+                        req.body.titulacion +*/
+            "')",
             async function(err, response) {
                 if (err) throw err;
                 if (response) {

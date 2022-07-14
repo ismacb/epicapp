@@ -13,7 +13,7 @@ const login = async(req, res) => {
                 if (error)
                     throw error;
                 if (results.length === 0) {
-                    return res.status(400).json({
+                    return res.status(200).json({
                         ok: false,
                         msg: "Usuario o contraseña incorrectos",
                         token: "",
@@ -25,7 +25,7 @@ const login = async(req, res) => {
                             results[0].password
                         );
                         if (!validPassword) {
-                            return res.status(400).json({
+                            return res.status(200).json({
                                 ok: false,
                                 msg: "Usuario o contraseña incorrectos",
                                 token: "",

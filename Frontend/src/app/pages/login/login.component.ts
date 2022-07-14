@@ -5,7 +5,9 @@ import { tap, map, catchError } from "rxjs/operators";
 import { Router } from "@angular/router";
 import { of, Observable } from "rxjs";
 import { Usuario } from "./models/login.model";
-import { FormBuilder, Validators } from '@angular/forms';
+import { UserService } from 'src/app/pages/services/user.service';
+import { FormGroup, FormControl, Validators } from "@angular/forms";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-login',
@@ -13,24 +15,41 @@ import { FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  constructor(private http: HttpClient, private router: Router, private fb: FormBuilder,) {}
+  constructor(private http: HttpClient, private router: Router, private userservice: UserService) {}
   private usuario: Usuario = new Usuario(0, "", "", "");
+  
+  public loginForm = new FormGroup({
+    email: new FormControl("", [Validators.email, Validators.required]),
+    password: new FormControl("", [Validators.required, Validators.min(3)]),
+  });
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
-  public loginForm = this.fb.group({
-    email: ['', [Validators.required, Validators.email] ],
-    password: ['', Validators.required ] 
-  }); //Objeto de tipo formbuilder
+  login(): void {
+    if (!this.loginForm.valid) {      
+      console.warn("Errores en el formulario");
+      return;
+    }
+    this.userservice.login(this.loginForm.value).subscribe(
+      (res) => {
+        if(res.ok){
 
-  login(){
-    return this.http.post(`${environment.base_url}/login`, this.loginForm).pipe(
-      tap((res: any) => {
-        localStorage.setItem("token", res["token"]);
-        const { id, rol, nick, nombre, email } = res;
-        this.usuario = new Usuario(id, rol, nick, email, nombre);
-      })
+        }
+        else{
+          Swal.fire({
+            title: "Ops!",
+            text:
+              res.msg,
+            icon: "error",
+            confirmButtonText: "Ok",
+            allowOutsideClick: false,
+            width: '230px'
+          });
+        }
+      },
+      (err) => {
+        console.warn("Error respuesta api:", err);
+      }
     );
   }
 
@@ -41,6 +60,15 @@ export class LoginComponent implements OnInit {
 
   limpiarLocalStore(): void {
     localStorage.removeItem("token");
+  }
+
+  campoValidoLogin( campo: string){
+    let campoo = this.loginForm.get(campo);
+    if(campoo!=null){
+      return campoo.valid;
+    }else{
+      return true;
+    }
   }
 
   validar(correcto: boolean, incorrecto: boolean): Observable<boolean> {
