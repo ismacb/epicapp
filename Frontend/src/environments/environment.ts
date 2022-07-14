@@ -3,7 +3,10 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  base_url: "http://localhost:3000/epic",
+  registros_por_pagina: 10,
+  url: "http://localhost:3306/",
 };
 
 /*

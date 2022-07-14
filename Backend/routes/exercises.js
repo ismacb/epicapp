@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const { validarJWT } = require("../middleware/validar-jwt");
-const { getAllExercises, registerExercise, getExercise, editExercise, deleteExercise } = require("../controllers/exercise");
+const { getAllExercises, registerExercise, getExercise, editExercise, deleteExercise } = require("../controllers/exercises");
 
 const router = Router();
 

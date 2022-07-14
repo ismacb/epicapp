@@ -1,0 +1,39 @@
+<div class="main-container">
+    <div class="row" style="padding-top: 70px;">
+        <div class="col-12">
+            <div class="center h-center">
+                <img src="../../../assets/images/logos/logos_png_1.png" alt="logo_epic" width="auto" height="400px" />
+            </div>
+        </div>
+    </div>
+    <div class="row center">
+        <form class="form" id="loginForm" (ngSubmit)="login()" [formGroup]="loginForm">
+            <div class="form-group">
+                <div class="form__group field">
+                    <input type="email" class="form__field" placeholder="Email" name="email" id='email' required />
+                    <label for="name" class="form__label">Email</label>
+                </div>
+                <!-- <input type="email" name="email" class="form-control" placeholder="Email" formControlName="email"> -->
+            </div>
+            <div class="form-group">
+                <div class="form__group field">
+                    <input type="password" class="form__field" placeholder="password" name="password" id='password' required />
+                    <label for="password" class="form__label">Password</label>
+                </div>
+                <!-- <input type="password" name="password" placeholder="Contraseña" class="form-control" formControlName="password" id="password" #passwordfield> -->
+            </div>
+            <br>
+            <div class="form-group center">
+                <button name="submit" class="button-40 input-submit" role="button">Login</button>
+            </div>
+        </form>
+    </div>
+    <br>
+    <div class="row center">
+        <p style="color: #76448a; margin-bottom: 0" class="h-center">
+            ¿Club? Regístrate &nbsp; <u>aquí</u>
+        </p>
+
+    </div>
+
+</div>
