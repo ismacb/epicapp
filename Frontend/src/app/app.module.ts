@@ -25,7 +25,7 @@ import { CreateUserComponent } from './pages/user/create-user/create-user.compon
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

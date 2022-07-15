@@ -28,7 +28,6 @@ export class UserService {
     }
 
     register( formData: registerForm) {
-        debugger;
         return this.http.post(`${environment.base_url}/coaches/register`, formData).pipe(
           tap( (res : any) => {
             sessionStorage.setItem('x-token', res['token']);

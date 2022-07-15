@@ -33,7 +33,13 @@ export class LoginComponent implements OnInit {
     this.userservice.login(this.loginForm.value).subscribe(
       (res) => {
         if(res.ok){
-
+          console.log(res);
+          if(this.userservice.rol == "ENTRENADOR"){
+            window.location.href = "./home-client";
+          }
+          else{
+            window.location.href = "./home-coach";            
+          }
         }
         else{
           Swal.fire({

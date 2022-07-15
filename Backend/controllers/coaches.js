@@ -28,52 +28,55 @@ const registerCoach = async(req, res) => {
     const salt = bcrypt.genSaltSync();
     const cpass = bcrypt.hashSync(req.body.password, salt);
     try {
-        pool.query("INSERT INTO usuario (rol, email, password, nick, nombre, apellidos, edad, telefono, titulacion) values('ENTRENADOR', '" +
+        pool.query("INSERT INTO usuario (rol, email, password, nick, nombre, apellidos, edad, telefono, titulacion) values('" + req.body.rol + "', '" +
             req.body.email + "' , '" +
             cpass + "' , '" +
             req.body.nick + "' , '" +
             req.body.nombre + "' , '" +
             req.body.apellidos + "' , " +
-            req.body.edad +
-            /* " , " +
-                        req.body.telefono + " , '" +
-                        req.body.titulacion +*/
-            "')",
+            req.body.edad + " , " +
+            req.body.telefono + " , '" +
+            req.body.titulacion + "')",
             async function(err, response) {
-                if (err) throw err;
+                if (err) {
+                    res.status(400).json(err);
+                    throw err;
+                }
                 if (response) {
-                    const transporter = nodemailer.createTransport({
-                        service: "gmail",
-                        host: 'smtp.gmail.com',
-                        auth: {
-                            user: "epicscasesoramiento@gmail.com",
-                            pass: "ccoyauaynqpsotqn",
-                        },
-                    });
-                    const mailOptions = {
-                        from: "epicscasesoramiento@gmail.com",
-                        to: req.body.email,
-                        subject: "BIENVENID@ A EPIC",
-                        html: "<h1> ¡Cuenta creada con éxito, " +
-                            req.body.nombre +
-                            "! </h1> <p> Desde EPIC asesoramiento os damos una calurosa bienvenida y os deseamos la mejor experiencia con nuestra herramienta. </p>" +
+                    res.status(200).json(response);
 
-                            "<p>Para iniciar sesión pulsa en el siguiente enlace:</p>" +
-                            '<a href="http://localhost:4200/login" style="padding: 10px; background-color: #76448A, color: white">Iniciar sesión</a>',
-                    };
+                    // const transporter = nodemailer.createTransport({
+                    //     service: "gmail",
+                    //     host: 'smtp.gmail.com',
+                    //     auth: {
+                    //         user: "epicscasesoramiento@gmail.com",
+                    //         pass: "ccoyauaynqpsotqn",
+                    //     },
+                    // });
+                    // const mailOptions = {
+                    //     from: "epicscasesoramiento@gmail.com",
+                    //     to: req.body.email,
+                    //     subject: "BIENVENID@ A EPIC",
+                    //     html: "<h1> ¡Cuenta creada con éxito, " +
+                    //         req.body.nombre +
+                    //         "! </h1> <p> Desde EPIC asesoramiento os damos una calurosa bienvenida y os deseamos la mejor experiencia con nuestra herramienta. </p>" +
 
-                    transporter.sendMail(mailOptions, function(error, info) {
-                        if (error) {
-                            console.log(error);
-                            return res.status(400).json({
-                                ok: false,
-                                msg: "Error enviando mail",
-                                token: "",
-                            });
-                        } else {
-                            return res.status(200).json({ info });
-                        }
-                    });
+                    //         "<p>Para iniciar sesión pulsa en el siguiente enlace:</p>" +
+                    //         '<a href="http://localhost:4200/login" style="padding: 10px; background-color: #76448A, color: white">Iniciar sesión</a>',
+                    // };
+
+                    // transporter.sendMail(mailOptions, function(error, info) {
+                    //     if (error) {
+                    //         console.log(error);
+                    //         return res.status(400).json({
+                    //             ok: false,
+                    //             msg: "Error enviando mail",
+                    //             token: "",
+                    //         });
+                    //     } else {
+                    //         return res.status(200).json({ info });
+                    //     }
+                    // });
                 }
             });
 

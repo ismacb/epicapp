@@ -1,18 +1,28 @@
 <div class="main-container">
-    <div class="row" style="padding-top: 20px;">
+    <div class="row" style="margin: 0;">
         <div class="col-12">
             <div class="center h-center">
-                <img src="../../../assets/images/logos/logos_png_1.png" alt="logo_epic" width="auto" height="400px" />
+                <span routerLink="../login" class="material-symbols-outlined" style="font-size: 40px;color: darkgray;margin-left: -83px; margin-top: 13px;">
+                        chevron_left
+                        </span>
+                <img src="../../../assets/images/logos/logos_png_1.png" alt="logo_epic" width="auto" height="200px" style="margin-left: 37px;" />
             </div>
         </div>
     </div>
+
+    <div class="row">
+        <div class="col-12">
+            <h2 class="center h-center" style="color: #232a68; margin: 0;">Registro</h2>
+        </div>
+    </div>
+
     <div class="row center">
         <form class="form" id="registerForm" (ngSubmit)="register()" [formGroup]="registerForm">
             <div class="form-group">
                 <div class="form__group field">
-                    <label for="rol" class="form__label">Soy...</label>
                     <select class="select-sm form-control" name="rol" class="form__field" name="rol" id='rol' required formControlName="rol">
-                        <option value="ENTRENADOR" selected="true">Entrenador</option>
+                        <option value="" disabled selected>Selecciona</option>
+                        <option value="ENTRENADOR">Entrenador</option>
                         <option value="CLIENTE">Cliente</option>
                        </select>
                 </div>
@@ -51,6 +61,12 @@
                 <div class="form__group field">
                     <input type="number" class="form__field" placeholder="Edad" name="edad" id='edad' required formControlName="edad" />
                     <label for="edad" class="form__label">Edad</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="form__group field">
+                    <input type="number" class="form__field" placeholder="Telefono" name="telefono" id="telefono" required formControlName="telefono" />
+                    <label for="telefono" class="form__label">Telefono</label>
                 </div>
             </div>
             <br>

@@ -3,10 +3,9 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'; //Formulario reactivo
 import { HttpClientModule } from "@angular/common/http";
-import { UserComponent } from './user/user.component';
-import { HomeClientComponent } from './home-client/home-client.component';
+import { UserComponent } from '../pages/user/user.component';
+import { HomeClientComponent } from '../pages/home-client/home-client.component';
 import { NavbarComponent } from '../common/navbar/navbar.component';
-
 
 
 @NgModule({
@@ -17,6 +16,7 @@ import { NavbarComponent } from '../common/navbar/navbar.component';
     NavbarComponent
   ],
   exports: [
+    NavbarComponent
   ],
   imports: [
     FormsModule,
@@ -26,4 +26,4 @@ import { NavbarComponent } from '../common/navbar/navbar.component';
   entryComponents: []
 
 })
-export class PagesModule { }
+export class Common{ }

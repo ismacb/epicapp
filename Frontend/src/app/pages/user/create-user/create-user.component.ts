@@ -26,9 +26,9 @@ export class CreateUserComponent implements OnInit {
     nombre:new FormControl("", [Validators.required]),
     apellidos: new FormControl("", [Validators.required]),
     edad: new FormControl("", [Validators.required]),
-    telefono: new FormControl("" ),
-    titulacion: new FormControl("" ),
-    imagen: new FormControl("" ),
+    telefono: new FormControl(""),
+    titulacion: new FormControl(""),
+    imagen: new FormControl(""),
   });
 
   ngOnInit(): void {
@@ -37,28 +37,41 @@ export class CreateUserComponent implements OnInit {
   register(): void{
       if (!this.registerForm.valid) {      
         console.warn("Errores en el formulario");
-        console.log(this.registerForm);
         return;
       }
-      debugger;
       this.userservice.register(this.registerForm.value).subscribe(
         (res) => {
-          if(res.ok){
-            console.log(res);
-          }
-          else{
+          Swal.fire({
+              title: "Bienvenido",
+              text:
+                "Tu cuenta se ha creado correctamente",
+              icon: "success",
+              confirmButtonText: "Ok",
+              allowOutsideClick: false,
+              width: '230px'
+            }).then(function(){
+              window.location.href="./login";
+            })
+            ;
+        },
+        (err) => {
+          debugger;
+          var mensaje= "";
+            if(err.error.sqlMessage.includes("for key 'nick'")){
+              mensaje = "Ya existe ese nick";
+            }
+            else{
+              mensaje = "Ya existe ese email";
+            }
             Swal.fire({
               title: "Ops!",
               text:
-                res.msg,
+                mensaje,
               icon: "error",
               confirmButtonText: "Ok",
               allowOutsideClick: false,
               width: '230px'
             });
-          }
-        },
-        (err) => {
           console.warn("Error respuesta api:", err);
         }
       );
