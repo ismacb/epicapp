@@ -5,7 +5,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms'; //Formulario 
 import { HttpClientModule } from "@angular/common/http";
 import { UserComponent } from './user/user.component';
 import { HomeClientComponent } from './home-client/home-client.component';
-import { NavbarComponent } from '../common/navbar/navbar.component';
+import { PerfilComponent } from './perfil/perfil.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { NgChartsModule } from 'ng2-charts';
 
 
 
@@ -14,14 +16,16 @@ import { NavbarComponent } from '../common/navbar/navbar.component';
   
     UserComponent,
     HomeClientComponent,
-    NavbarComponent
+    PerfilComponent,
   ],
   exports: [
   ],
   imports: [
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxChartsModule,
+    NgChartsModule
   ],
   entryComponents: []
 

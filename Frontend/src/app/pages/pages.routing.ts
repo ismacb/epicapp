@@ -5,6 +5,8 @@ import { LoginComponent } from './login/login.component';
 import { CreateUserComponent } from './user/create-user/create-user.component';
 import { HomeClientComponent } from './home-client/home-client.component';
 import { NavbarComponent } from '../common/navbar/navbar.component';
+import { PerfilComponent } from './perfil/perfil.component';
+import { EstadisticasComponent } from './estadisticas/estadisticas.component';
 
 
 const routes: Routes = [   
@@ -12,6 +14,8 @@ const routes: Routes = [
     { path: 'login',component: LoginComponent},
     { path: 'register', component: CreateUserComponent},
     { path: 'home-client', component: HomeClientComponent},
+    { path: 'perfil', component: PerfilComponent},
+    { path: 'estadisticas', component: EstadisticasComponent},
     // { path: 'home-coach', component: HomeCoachComponent},
 
 ];

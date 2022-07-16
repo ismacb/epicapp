@@ -9,6 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from "@angular/common/http";
 import { UserComponent } from './pages/user/user.component';
 import { CreateUserComponent } from './pages/user/create-user/create-user.component';
+import { EstadisticasComponent } from './pages/estadisticas/estadisticas.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { CreateUserComponent } from './pages/user/create-user/create-user.compon
     HomeComponent,
     NavbarComponent,
     CreateUserComponent,
-    UserComponent
+    UserComponent,
+    EstadisticasComponent
   ],
   imports: [
     BrowserModule,

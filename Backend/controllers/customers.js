@@ -252,7 +252,8 @@ const getFeedbyDate = async(req, res) => {
 //Devuelve todos los entrenamientos y comidas del entrenador
 const getTrainFeed = async(req, res) => {
     try {
-        pool.query("SELECT * FROM entrenamiento, comida WHERE id_cliente =" + req.body.id,
+        pool.query("SELECT * FROM entrenamiento, comida WHERE entrenamiento.id_cliente =" + req.query.id + " and comida.id_cliente =" + req.query.id +
+            " and entrenamiento.fecha = '" + req.query.fecha + "' and comida.fecha='" + req.query.fecha + "'",
             async function(error, results) {
                 if (error)
                     throw error;
@@ -269,4 +270,42 @@ const getTrainFeed = async(req, res) => {
     }
 };
 
-module.exports = { getAllCustomers, registerCustomer, getCustomer, editCustomer, getCoachsbyCustomer, deleteCustomer, getTrains, getTrainbyDate, getFeedbyDate, getFeeds, getTrainFeed }
+const getMetricas = async(req, res) => {
+    try {
+        pool.query("SELECT * FROM medidascliente WHERE id_cli =" + req.query.id,
+            async function(error, results) {
+                if (error)
+                    throw error;
+                res.status(200).json(results);
+            });
+
+    } catch (error) {
+        console.log(error);
+        return res.status(400).json({
+            ok: false,
+            msg: "Error en getMetricas",
+            token: "",
+        });
+    }
+};
+
+const putMetricas = async(req, res) => {
+    try {
+        pool.query("INSERT INTO medidascliente VALUES (" + req.body.id + "," + req.body.altura + "," + req.body.peso + "," + req.body.imc + "," + req.body.brazo + "," + req.body.cintura + "," + req.body.muslo + ")",
+            async function(error, results) {
+                if (error)
+                    throw error;
+                res.status(200).json(results);
+            });
+
+    } catch (error) {
+        console.log(error);
+        return res.status(400).json({
+            ok: false,
+            msg: "Error en getMetricas",
+            token: "",
+        });
+    }
+};
+
+module.exports = { getAllCustomers, registerCustomer, getCustomer, editCustomer, getCoachsbyCustomer, deleteCustomer, getTrains, getTrainbyDate, getFeedbyDate, getFeeds, getTrainFeed, getMetricas, putMetricas }

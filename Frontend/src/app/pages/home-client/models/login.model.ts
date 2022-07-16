@@ -14,6 +14,15 @@ export class Usuario {
     password: string;
   }
 
+  export interface registrarmedidas{
+    altura : number;
+    peso : number;
+    imc : number;
+    brazo : number;
+    cintura : number;
+    muslo : number;
+  }
+
   export interface registerForm {
      rol: string,
      nick: string,

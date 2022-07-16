@@ -6,3 +6,7 @@ export interface loginForm {
 export interface registerForm{
 
 }
+
+export interface registrarmedidas{
+    
+}

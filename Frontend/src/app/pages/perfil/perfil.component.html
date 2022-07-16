@@ -1,0 +1,114 @@
+<div class="main-container">
+    <div class="row">
+        <div class="col-12">
+            <div style="text-align: center; padding-top: 1em;">
+                <h1 style="color: #232a68;">PERFIL</h1>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-12">
+            <div style="text-align: center">
+                <span class="material-symbols-outlined">account_circle</span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div style="text-align: center">
+                <a href="">Añadir foto</a>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div style="text-align: center;">
+                <h2>{{this.rol}}</h2>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div style="text-align: center;">
+                <h3>{{this.nick}}</h3>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div style="text-align: center;">
+                <h3>{{this.email}}</h3>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div style="text-align: center;">
+                <h2>Mis datos</h2>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div>
+                <label for="nombre">Nombre: &nbsp;<input type="text" name="nombre" id="nombre" style="width: 166px;" value="{{this.nombre}}">
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div style="padding-top: 20px;">
+                <label for="apellidos">Apellidos: &nbsp;<input type="text" name="apellidos" id="apellidos" value="{{this.apellidos}}">
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div style="padding-top: 20px;">
+                <label for="edad">Edad: &nbsp;<input type="text" name="edad" id="edad" style="width: 191px;" value="{{this.edad}}">
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div style="padding-top: 20px;">
+                <label for="telefono">Teléfono: &nbsp;<input type="text" name="telefono" id="telefono"  value="{{this.telefono}}">
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="row" *ngif="this.esconde">
+        <div class="col-12">
+            <div style="padding-top: 20px;">
+                <label for="telefono">Titulación: &nbsp;<input type="text" name="telefono" id="telefono"  value="{{this.titulacion}}"></label>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div style="text-align: center; padding-top: 20px;">
+                <button class="button-40 input-submit" role="button">Guardar</button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div style="text-align: center; padding-top: 20px;">
+                <a href="">Cambiar contraseña</a>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div style="text-align: center;padding-top: 20px;">
+                <a href="">Eliminar cuenta</a>
+            </div>
+        </div>
+    </div>
+
+
+</div>

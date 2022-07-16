@@ -1,0 +1,47 @@
+div {
+    display: inline-block;
+}
+
+.main-container {
+    width: 100%;
+    text-align-last: justify;
+}
+
+.row {
+    width: 100%;
+    display: inline-flex;
+    justify-content: space-around;
+}
+
+.material-symbols-outlined {
+    display: contents;
+}
+
+.col {
+    display: inline-flex;
+    justify-content: space-around;
+    padding: 15px;
+    padding-left: 26px;
+    padding-right: 26px;
+}
+
+#nav {
+    right: 0px;
+    position: fixed;
+    bottom: 0px;
+    background-color: #232a68;
+}
+
+span {
+    color: darkgray;
+    font-size: 26px;
+}
+
+.col:hover {
+    background-color: darkgray;
+    color: #232a68;
+}
+
+.col:focus {
+    color: darkgray;
+}

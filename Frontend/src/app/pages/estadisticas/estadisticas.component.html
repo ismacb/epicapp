@@ -1,0 +1,56 @@
+<div class="main-container">
+    <div class="row">
+        <div class="col-12">
+            <div style="text-align: center; padding-top: 1em;">
+                <h1 style="color: #232a68;">ESTADÍSTICAS</h1>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-12" style="text-align: center;">
+            <h2>Registrar</h2>
+        </div>
+    </div>
+    <br>
+    <form class="form" id="registrarmedidas" (ngSubmit)="actualizar()" [formGroup]="registrarmedidas">
+        <div class="row">
+            <div class="col-6" id="datos">
+                <label for="altura" style="margin-right: 2em;">Altura: &nbsp;<input type="number" name="altura" id="altura" style="width: 50px; " value="{{this.altura}}"> cm</label>&nbsp;
+                <label for="peso">Peso: &nbsp;<input type="number" name="peso" id="peso" style="width: 50px;" value="{{this.peso}}"> kg</label>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-6" id="datos">
+                <label for="imc" style="margin-right: 2em;">IMC: &nbsp;<input type="number" name="imc" id="imc" style="width: 50px;" disabled value="{{this.imc}}">
+            </label>&nbsp;
+                <label for="brazo" style="margin-left: 20px ;">Brazo: &nbsp;<input type="number" name="brazo" id="brazo" style="width: 50px;" value="{{this.brazo}}"> cm</label>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-6" id="datos">
+                <label for="cintura" style="margin-right: 2em;">Cintura: &nbsp;<input type="number" name="cintura" id="cintura" style="width: 50px; " value="{{this.cintura}}"> cm</label>&nbsp;
+                <label for="muslo">Muslo: &nbsp;<input type="number" name="muslo" id="muslo" style="width: 50px;" value="{{this.muslo}}"> cm</label>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-12" style="text-align: center;">
+                <button type="submit" name="submit" class="button-40 input-submit" role="button">Actualizar</button>
+            </div>
+        </div>
+    </form>
+
+    <!-- <div>
+        <div>
+            <div style="display: block">
+                <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [colors]="barChartColors" [legend]="barChartLegend" [chartType]="barChartType">
+            </canvas>
+            </div>
+        </div>
+    </div> -->
+
+
+</div>

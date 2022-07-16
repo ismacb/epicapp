@@ -16,7 +16,7 @@ import Swal from "sweetalert2";
 })
 export class CreateUserComponent implements OnInit {
   constructor(private http: HttpClient, private router: Router, private userservice: UserService) {}
-  private usuario: Usuario = new Usuario(0, "", "", "");
+  private usuario: Usuario = new Usuario(0, "", "", "", "","");
 
   public registerForm = new FormGroup({
     email: new FormControl("", [Validators.email, Validators.required]),

@@ -12,11 +12,8 @@ import { NavbarComponent } from '../common/navbar/navbar.component';
   declarations: [
   
     UserComponent,
-    HomeClientComponent,
-    NavbarComponent
   ],
   exports: [
-    NavbarComponent
   ],
   imports: [
     FormsModule,

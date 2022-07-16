@@ -1,12 +1,19 @@
-<!-- <header class="bottombar" data-navbarbg="skin5">
-    <nav class="navbar navbar-expand-sm navbar-light bg-light" style="background-color: #d9d9d9 !important">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#opciones">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    </nav>
-</header> -->
-
-<div class="navbar navbar-app navbar-absolute-bottom">
-    <h1>hola</h1>
+<div class="main-container" id="nav" *ngIf="this.token != null">
+    <div class="row">
+        <div class="col" id="home" [routerLink]="['/home-client']">
+            <span class="material-symbols-outlined" id="homes">home</span>
+        </div>
+        <div class="col" [routerLink]="['/home-client']">
+            <span class="material-symbols-outlined">group</span>
+        </div>
+        <div class="col">
+            <span class="material-symbols-outlined">sms</span>
+        </div>
+        <div class="col">
+            <span class="material-symbols-outlined">monitoring</span>
+        </div>
+        <div class="col">
+            <span class="material-symbols-outlined">account_circle</span>
+        </div>
+    </div>
 </div>
