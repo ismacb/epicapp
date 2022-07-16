@@ -10,3 +10,7 @@ export interface registerForm{
 export interface registrarmedidas{
     
 }
+
+export interface registrarperfil{
+    
+}

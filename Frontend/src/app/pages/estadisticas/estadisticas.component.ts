@@ -22,12 +22,12 @@ export class EstadisticasComponent implements OnInit {
   public muslo = 0;
 
   public registrarmedidas = new FormGroup({
-    altura : new FormControl("", [Validators.required]),
-    peso : new FormControl("", [Validators.required]),
-    imc : new FormControl("", [Validators.required]),
-    brazo : new FormControl("", [Validators.required]),
-    cintura : new FormControl("", [Validators.required]),
-    muslo : new FormControl("", [Validators.required])
+    altura : new FormControl(0, [Validators.required]),
+    peso : new FormControl(0, [Validators.required]),
+    imc : new FormControl(0, [Validators.required]),
+    brazo : new FormControl(0, [Validators.required]),
+    cintura : new FormControl(0, [Validators.required]),
+    muslo : new FormControl(0, [Validators.required])
   });
 
   ngOnInit(): void {
@@ -35,12 +35,19 @@ export class EstadisticasComponent implements OnInit {
   }
 
   getDatos(){
-    this.userservice.getDatos(24).subscribe(
+    var ids= 0;
+    if(sessionStorage.getItem('id') != null){
+      ids= parseInt(sessionStorage.getItem('id') || "0");
+    }
+    this.userservice.getDatos(ids).subscribe(
       (res) => {
         var ult= res[res.length-1];
         this.altura = ult.altura;
         this.peso = ult.peso;
-        this.imc=ult.imc;
+        debugger;
+
+        this.imc = parseFloat(((ult.peso/(ult.altura * ult.altura))*10000).toPrecision(4));
+
         this.brazo = ult.pbrazo;
         this.cintura = ult.pcintura;
         this.muslo = ult.pmuslo;
@@ -52,13 +59,46 @@ export class EstadisticasComponent implements OnInit {
   }
 
   actualizar(){
-    debugger;
-    if (!this.registrarmedidas.valid) {      
-      console.warn("Errores en el formulario");
-      return;
+      var altura2= this.registrarmedidas.get('altura')?.value;
+      var peso2= this.registrarmedidas.get('peso')?.value;
+      var imc2 = this.imc;
+
+      var brazo2= this.registrarmedidas.get('brazo')?.value;
+      var cintura2= this.registrarmedidas.get('cintura')?.value;
+      var muslo2= this.registrarmedidas.get('muslo')?.value;
+      if(altura2 == 0){
+        altura2= this.altura
+      }
+      if(peso2 == 0){
+        peso2= this.peso
+      }
+      if(brazo2 == 0){
+        brazo2= this.brazo
+      }
+      if(cintura2 == 0){
+        cintura2= this.cintura
+      }
+      if(muslo2 == 0){
+        muslo2= this.muslo
+      }
+
+      this.registrarmedidas.setValue ({
+        altura: altura2? altura2: 0,
+        peso: peso2? peso2: 0,
+        imc: imc2? imc2: 0,
+        brazo: brazo2? brazo2: 0,
+        cintura: cintura2? cintura2: 0,
+        muslo: muslo2? muslo2: 0
+      });
+
+      var ids= 0;
+    if(sessionStorage.getItem('id') != null){
+      ids= parseInt(sessionStorage.getItem('id') || "0");
     }
-    this.userservice.login(this.registrarmedidas.value).subscribe(
+
+    this.userservice.putDatos(ids,this.registrarmedidas.value).subscribe(
       (res) => {
+        this.getDatos();
           Swal.fire({
             title: "Guardado",
             text:

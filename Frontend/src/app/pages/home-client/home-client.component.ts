@@ -29,8 +29,11 @@ export class HomeClientComponent implements OnInit {
 }
 
   entrenos(date: string){
-
-    this.userservice.getEntrenosNutricion(24,date).subscribe(
+    var ids= 0;
+    if(sessionStorage.getItem('id') != null){
+      ids= parseInt(sessionStorage.getItem('id') || "0");
+    }
+    this.userservice.getEntrenosNutricion(ids,date).subscribe(
       (res) => {
         if(res.length > 0){
           this.lista = res;

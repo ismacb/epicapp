@@ -14,29 +14,31 @@
     </div>
     <br>
     <form class="form" id="registrarmedidas" (ngSubmit)="actualizar()" [formGroup]="registrarmedidas">
-        <div class="row">
-            <div class="col-6" id="datos">
-                <label for="altura" style="margin-right: 2em;">Altura: &nbsp;<input type="number" name="altura" id="altura" style="width: 50px; " value="{{this.altura}}"> cm</label>&nbsp;
-                <label for="peso">Peso: &nbsp;<input type="number" name="peso" id="peso" style="width: 50px;" value="{{this.peso}}"> kg</label>
+        <!-- <div class="row"> -->
+        <div class="form-group" id="datos">
+            <div class="form__group field">
+                <label for="altura" style="margin-right: 2em;">Altura: &nbsp;<input type="number" name="altura" id="altura" style="width: 50px; " value="{{this.altura}}" formControlName="altura"> cm</label>&nbsp;
+                <label for="peso">Peso: &nbsp;<input type="number" name="peso" id="peso" style="width: 50px;" value="{{this.peso}}" formControlName="peso"> kg</label>
             </div>
         </div>
+        <!-- </div> -->
         <br>
-        <div class="row">
+        <div class="form-group center">
             <div class="col-6" id="datos">
-                <label for="imc" style="margin-right: 2em;">IMC: &nbsp;<input type="number" name="imc" id="imc" style="width: 50px;" disabled value="{{this.imc}}">
+                <label for="imc" style="margin-right: 2em;">IMC: &nbsp;   <input type="number" name="imc" id="imc" style="width: 50px;" disabled value="{{this.imc}}">
             </label>&nbsp;
-                <label for="brazo" style="margin-left: 20px ;">Brazo: &nbsp;<input type="number" name="brazo" id="brazo" style="width: 50px;" value="{{this.brazo}}"> cm</label>
+                <label for="brazo" style="margin-left: 20px ;">Brazo: &nbsp;<input type="number" name="brazo" id="brazo" style="width: 50px;" value="{{this.brazo}}" formControlName="brazo"> cm</label>
             </div>
         </div>
         <br>
-        <div class="row">
+        <div class="form-group center">
             <div class="col-6" id="datos">
-                <label for="cintura" style="margin-right: 2em;">Cintura: &nbsp;<input type="number" name="cintura" id="cintura" style="width: 50px; " value="{{this.cintura}}"> cm</label>&nbsp;
-                <label for="muslo">Muslo: &nbsp;<input type="number" name="muslo" id="muslo" style="width: 50px;" value="{{this.muslo}}"> cm</label>
+                <label for="cintura" style="margin-right: 2em;">Cintura: &nbsp;<input type="number" name="cintura" id="cintura" style="width: 50px;" value="{{this.cintura}}" formControlName="cintura"> cm</label>&nbsp;
+                <label for="muslo">Muslo: &nbsp;<input type="number" name="muslo" id="muslo" style="width: 50px;" value="{{this.muslo}}" formControlName="muslo"> cm</label>
             </div>
         </div>
         <br>
-        <div class="row">
+        <div class="form-group center">
             <div class="col-12" style="text-align: center;">
                 <button type="submit" name="submit" class="button-40 input-submit" role="button">Actualizar</button>
             </div>

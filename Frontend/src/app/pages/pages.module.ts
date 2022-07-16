@@ -16,7 +16,6 @@ import { NgChartsModule } from 'ng2-charts';
   
     UserComponent,
     HomeClientComponent,
-    PerfilComponent,
   ],
   exports: [
   ],

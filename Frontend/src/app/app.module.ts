@@ -10,6 +10,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { UserComponent } from './pages/user/user.component';
 import { CreateUserComponent } from './pages/user/create-user/create-user.component';
 import { EstadisticasComponent } from './pages/estadisticas/estadisticas.component';
+import { PerfilComponent } from './pages/perfil/perfil.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { EstadisticasComponent } from './pages/estadisticas/estadisticas.compone
     NavbarComponent,
     CreateUserComponent,
     UserComponent,
-    EstadisticasComponent
+    EstadisticasComponent,
+    PerfilComponent
   ],
   imports: [
     BrowserModule,

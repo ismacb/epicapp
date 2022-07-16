@@ -128,11 +128,7 @@ const getCoachsbyCustomer = async(req, res) => {
 //Editar perfil del cliente
 const editCustomer = async(req, res) => {
     try {
-        pool.query("UPDATE usuario set ( nombre, apellidos, edad, imagen, telefono) values ('" +
-            req.body.nombre + "' , '" +
-            req.body.apellidos + "' , '" +
-            req.body.edad + "' , null, '" +
-            req.body.telefono + "' , ')",
+        pool.query("UPDATE usuario set nombre ='" + req.body.nombre + "', apellidos='" + req.body.apellidos + "', edad =" + req.body.edad + ", imagen ='', telefono=" + req.body.telefono + ", titulacion ='" + req.body.titulacion + "' WHERE id = " + req.query.id,
             async function(error, results) {
                 if (error)
                     throw error;
@@ -291,7 +287,7 @@ const getMetricas = async(req, res) => {
 
 const putMetricas = async(req, res) => {
     try {
-        pool.query("INSERT INTO medidascliente VALUES (" + req.body.id + "," + req.body.altura + "," + req.body.peso + "," + req.body.imc + "," + req.body.brazo + "," + req.body.cintura + "," + req.body.muslo + ")",
+        pool.query("INSERT INTO medidascliente (id_cli, altura, peso, imc, pbrazo, pcintura, pmuslo) VALUES (" + req.query.id + "," + req.body.altura + "," + req.body.peso + "," + req.body.imc + "," + req.body.brazo + "," + req.body.cintura + "," + req.body.muslo + ")",
             async function(error, results) {
                 if (error)
                     throw error;

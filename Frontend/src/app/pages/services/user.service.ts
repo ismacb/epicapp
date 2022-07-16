@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from "../../../environments/environment";
 import { tap, map, catchError } from "rxjs/operators";
-import { loginForm, registerForm, registrarmedidas } from '../../interfaces/login-form.interface';
+import { loginForm, registerForm, registrarmedidas, registrarperfil } from '../../interfaces/login-form.interface';
 import { Usuario } from "../login/models/login.model";
 import { Router } from '@angular/router';
 
@@ -19,8 +19,9 @@ export class UserService {
     login(formData: loginForm) {
         return this.http.post(`${environment.base_url}/login`, formData).pipe(
           tap( (res : any) => {
-            debugger;
             sessionStorage.setItem('x-token', res['token']);
+            sessionStorage.setItem('id', res['id']);
+            sessionStorage.setItem('rol', res['rol']);
             const { id, rol, nick, email, nombre, token } = res;
             this.user = new Usuario(id, rol, nick, email, nombre, token); 
           })
@@ -58,8 +59,14 @@ export class UserService {
       );
     }
 
-    putDatos(formData: registrarmedidas){
-      return this.http.put(`${environment.base_url}/customers/datos`, formData, this.cabeceras).pipe(
+    putDatos(id: number,formData: registrarmedidas){
+      return this.http.put(`${environment.base_url}/customers/datos?id=`+id, formData, this.cabeceras).pipe(
+        tap( (res : any) => {})
+      );
+    }
+
+    putPerfil(id: number,formData: registrarperfil){
+      return this.http.put(`${environment.base_url}/customers/edit?id=`+id, formData, this.cabeceras).pipe(
         tap( (res : any) => {})
       );
     }

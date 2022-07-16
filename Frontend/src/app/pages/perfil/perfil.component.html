@@ -49,52 +49,54 @@
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-12">
-            <div>
-                <label for="nombre">Nombre: &nbsp;<input type="text" name="nombre" id="nombre" style="width: 166px;" value="{{this.nombre}}">
+    <form class="form" id="registrarmedidas" (ngSubmit)="actualizar()" [formGroup]="registrarperfil">
+        <div class="row">
+            <div class="col-12">
+                <div>
+                    <label for="nombre">Nombre: &nbsp;<input type="text" name="nombre" id="nombre" style="width: 166px;" value="{{this.nombre}}" formControlName="nombre">
                 </label>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="row">
+        <div class="row">
+            <div class="col-12">
+                <div style="padding-top: 20px;">
+                    <label for="apellidos">Apellidos: &nbsp;<input type="text" name="apellidos" id="apellidos" value="{{this.apellidos}}" formControlName="apellidos">
+                </label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div style="padding-top: 20px;">
+                    <label for="edad">Edad: &nbsp;<input type="text" name="edad" id="edad" style="width: 191px;" value="{{this.edad}}" formControlName="edad">
+                </label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div style="padding-top: 20px;">
+                    <label for="telefono">Teléfono: &nbsp;<input type="text" name="telefono" id="telefono"  value="{{this.telefono}}" formControlName="telefono">
+                </label>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="row" *ngif="this.esconde">
         <div class="col-12">
             <div style="padding-top: 20px;">
-                <label for="apellidos">Apellidos: &nbsp;<input type="text" name="apellidos" id="apellidos" value="{{this.apellidos}}">
-                </label>
+                <label for="telefono">Titulación: &nbsp;<input type="text" name="telefono" id="telefono"  value="{{this.titulacion}}" formControlName="titulacion"></label>
             </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-12">
-            <div style="padding-top: 20px;">
-                <label for="edad">Edad: &nbsp;<input type="text" name="edad" id="edad" style="width: 191px;" value="{{this.edad}}">
-                </label>
+    </div> -->
+        <div class="row">
+            <div class="col-12">
+                <div style="text-align: center; padding-top: 20px;">
+                    <button class="button-40 input-submit" role="button">Guardar</button>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-12">
-            <div style="padding-top: 20px;">
-                <label for="telefono">Teléfono: &nbsp;<input type="text" name="telefono" id="telefono"  value="{{this.telefono}}">
-                </label>
-            </div>
-        </div>
-    </div>
-    <div class="row" *ngif="this.esconde">
-        <div class="col-12">
-            <div style="padding-top: 20px;">
-                <label for="telefono">Titulación: &nbsp;<input type="text" name="telefono" id="telefono"  value="{{this.titulacion}}"></label>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-12">
-            <div style="text-align: center; padding-top: 20px;">
-                <button class="button-40 input-submit" role="button">Guardar</button>
-            </div>
-        </div>
-    </div>
+    </form>
     <div class="row">
         <div class="col-12">
             <div style="text-align: center; padding-top: 20px;">
