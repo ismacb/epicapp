@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'; //Formulario reactivo
 import { HttpClientModule } from "@angular/common/http";
@@ -8,14 +7,16 @@ import { HomeClientComponent } from './home-client/home-client.component';
 import { PerfilComponent } from './perfil/perfil.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { NgChartsModule } from 'ng2-charts';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { CommonModule } from '@angular/common';
 
 
 
 @NgModule({
-  declarations: [
-  
+  declarations: [  
     UserComponent,
     HomeClientComponent,
+    
   ],
   exports: [
   ],
@@ -24,7 +25,9 @@ import { NgChartsModule } from 'ng2-charts';
     ReactiveFormsModule,
     HttpClientModule,
     NgxChartsModule,
-    NgChartsModule
+    NgChartsModule,
+    MatTableModule,
+    CommonModule
   ],
   entryComponents: []
 

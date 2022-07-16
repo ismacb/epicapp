@@ -304,4 +304,80 @@ const putMetricas = async(req, res) => {
     }
 };
 
-module.exports = { getAllCustomers, registerCustomer, getCustomer, editCustomer, getCoachsbyCustomer, deleteCustomer, getTrains, getTrainbyDate, getFeedbyDate, getFeeds, getTrainFeed, getMetricas, putMetricas }
+const getContactos = async(req, res) => {
+    try {
+        pool.query("SELECT DISTINCT(usu.nick), id_receptor FROM chat ch, usuario usu WHERE (id_emisor =" + req.query.id + " or id_receptor=" + req.query.id + ") and ch.id_receptor = usu.id and usu.id <>" + req.query.id,
+            async function(error, results) {
+                if (error)
+                    throw error;
+                res.status(200).json(results);
+            });
+
+    } catch (error) {
+        console.log(error);
+        return res.status(400).json({
+            ok: false,
+            msg: "Error en getContactos",
+            token: "",
+        });
+    }
+}
+
+const getMensajes = async(req, res) => {
+    try {
+        pool.query("SELECT * FROM chat WHERE (id_emisor =" + req.query.ide + " and id_receptor =" + req.query.idr + ") or (id_emisor =" + req.query.idr + " and id_receptor =" + req.query.ide + ")",
+            async function(error, results) {
+                if (error)
+                    throw error;
+                res.status(200).json(results);
+            });
+
+    } catch (error) {
+        console.log(error);
+        return res.status(400).json({
+            ok: false,
+            msg: "Error en getMensajes",
+            token: "",
+        });
+    }
+}
+
+const putMensajes = async(req, res) => {
+    try {
+        pool.query("INSERT INTO chat (id_emisor, id_receptor, mensaje) values (" + req.query.idr + ", " + req.query.ide + ",'" + req.query.mensaje + "')",
+            async function(error, results) {
+                if (error)
+                    throw error;
+                res.status(200).json(results);
+            });
+
+    } catch (error) {
+        console.log(error);
+        return res.status(400).json({
+            ok: false,
+            msg: "Error en putMensajes",
+            token: "",
+        });
+    }
+}
+
+const getId = async(req, res) => {
+    try {
+        pool.query("SELECT id FROM usuario WHERE nick =" + req.query.nick,
+            async function(error, results) {
+                if (error)
+                    throw error;
+                res.status(200).json(results);
+            });
+
+    } catch (error) {
+        console.log(error);
+        return res.status(400).json({
+            ok: false,
+            msg: "Error en getMetricas",
+            token: "",
+        });
+    }
+}
+
+module.exports = { getAllCustomers, registerCustomer, getCustomer, editCustomer, getCoachsbyCustomer, deleteCustomer, getTrains, getTrainbyDate, getFeedbyDate, getFeeds, getTrainFeed, getMetricas, putMetricas, getContactos, getMensajes, putMensajes, getId }

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from "../../../environments/environment";
 import { tap, map, catchError } from "rxjs/operators";
-import { loginForm, registerForm, registrarmedidas, registrarperfil } from '../../interfaces/login-form.interface';
+import { loginForm, registerForm, registrarmedidas, registrarperfil, textForm } from '../../interfaces/login-form.interface';
 import { Usuario } from "../login/models/login.model";
 import { Router } from '@angular/router';
 
@@ -67,6 +67,30 @@ export class UserService {
 
     putPerfil(id: number,formData: registrarperfil){
       return this.http.put(`${environment.base_url}/customers/edit?id=`+id, formData, this.cabeceras).pipe(
+        tap( (res : any) => {})
+      );
+    }
+
+    getContactos(id: number){
+      return this.http.get(`${environment.base_url}/customers/contacts?id=`+id, this.cabeceras).pipe(
+        tap( (res : any) => {})
+      );
+    }
+
+    getMensajes(ide: number, idr: number){
+      return this.http.get(`${environment.base_url}/customers/mensajes?ide=`+ide+`&idr=`+idr, this.cabeceras).pipe(
+        tap( (res : any) => {})
+      );
+    }
+
+    putMensajes(idr:number, ide: number, mens :string){
+      return this.http.put(`${environment.base_url}/customers/mensajes?token=`+this.token+`&ide=`+ide+`&idr=`+idr+`&mensaje=`+mens, this.cabeceras).pipe(
+        tap( (res : any) => {})
+      );
+    }
+
+    getId(nick: string){
+      return this.http.get(`${environment.base_url}/customers/nick?nick=`+nick).pipe(
         tap( (res : any) => {})
       );
     }

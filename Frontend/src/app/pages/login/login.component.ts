@@ -26,7 +26,6 @@ export class LoginComponent implements OnInit {
     this.userservice.login(this.loginForm.value).subscribe(
       (res) => {
         if(res.ok){
-          debugger;
           if(this.userservice.rol == "CLIENTE"){
             window.location.href = "./home-client";
           }

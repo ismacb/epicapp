@@ -55,7 +55,6 @@ export class CreateUserComponent implements OnInit {
             ;
         },
         (err) => {
-          debugger;
           var mensaje= "";
             if(err.error.sqlMessage.includes("for key 'nick'")){
               mensaje = "Ya existe ese nick";

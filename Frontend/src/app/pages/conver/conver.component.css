@@ -1,0 +1,119 @@
+.center {
+    display: flex;
+    justify-content: center;
+    vertical-align: middle;
+}
+
+
+/* CSS */
+
+.button-40 {
+    background-color: #29317F;
+    border: 1px solid transparent;
+    border-radius: .75rem;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    flex: 0 0 auto;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    padding: .75rem 2rem;
+    text-align: center;
+    text-decoration-thickness: auto;
+    transition-duration: .2s;
+    transition-property: background-color, border-color, color, fill, stroke;
+    transition-timing-function: cubic-bezier(.4, 0, 0.2, 1);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    width: auto;
+}
+
+.button-40:hover {
+    background-color: #232a68;
+}
+
+:root {
+    background: #f5f6fa;
+    color: #9c9c9c;
+    font: 1rem "PT Sans", sans-serif;
+}
+
+html,
+body,
+.container {
+    height: 100%;
+}
+
+a {
+    color: inherit;
+}
+
+a:hover {
+    color: #7f8ff4;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.uppercase {
+    text-transform: uppercase;
+}
+
+.btn {
+    display: inline-block;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    border: 0;
+    outline: 0;
+    padding: 0;
+    transition: all 200ms ease-in;
+    cursor: pointer;
+}
+
+.btn--primary {
+    background: #232a68;
+    color: #fff;
+    box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.1);
+    border-radius: 2px;
+    padding: 12px 26px;
+}
+
+.btn--primary:hover {
+    background: #6c7ff2;
+}
+
+.btn--primary:active {
+    background: #7f8ff4;
+    box-shadow: inset 0 0 10px 2px rgba(0, 0, 0, 0.2);
+}
+
+.btn--inside {
+    margin-left: -96px;
+}
+
+.form__field {
+    width: 335px;
+    background: #fff;
+    color: #a3a3a3;
+    font: inherit;
+    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.1);
+    border: 0;
+    outline: 0;
+    padding: 13px 13px;
+}
+
+.form {
+    position: absolute;
+    top: 46em;
+    bottom: 23em;
+}
+
+p {
+    margin: 1em 50px;
+}

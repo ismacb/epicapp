@@ -2,9 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { FormGroup, Validators, FormControl} from '@angular/forms';
 import Swal from 'sweetalert2';
-// import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
-// // import { Label, Color } from 'ng2-charts';
-// import { NgxChartsModule, Label, Color } from '@swimlane/ngx-charts';
+import Chart from 'chart.js/auto'
+import { left, right } from '@popperjs/core';
 
 @Component({
   selector: 'app-estadisticas',
@@ -21,6 +20,11 @@ export class EstadisticasComponent implements OnInit {
   public cintura = 0;
   public muslo = 0;
 
+  public dataSource: Object | undefined;
+  public mychart: any;
+  public mychart2: any;
+  public jsonStrVisitProv = '[]';
+
   public registrarmedidas = new FormGroup({
     altura : new FormControl(0, [Validators.required]),
     peso : new FormControl(0, [Validators.required]),
@@ -31,7 +35,7 @@ export class EstadisticasComponent implements OnInit {
   });
 
   ngOnInit(): void {
-    this.getDatos();
+    this.getDatos();    
   }
 
   getDatos(){
@@ -44,13 +48,74 @@ export class EstadisticasComponent implements OnInit {
         var ult= res[res.length-1];
         this.altura = ult.altura;
         this.peso = ult.peso;
-        debugger;
-
         this.imc = parseFloat(((ult.peso/(ult.altura * ult.altura))*10000).toPrecision(4));
-
         this.brazo = ult.pbrazo;
         this.cintura = ult.pcintura;
         this.muslo = ult.pmuslo;
+        const data = {
+          labels: [res[res.length-6]? 'Peso 6': null ,res[res.length-5]? 'Peso 5': null , res[res.length-4]? 'Peso 4': null , res[res.length-3]? 'Peso 3': null , res[res.length-2]? 'Peso 2': null, res[res.length-1]? 'Peso actual': null],
+          datasets: [{
+            label: 'Peso',
+            backgroundColor: '#29317F',
+            borderColor: '#29317F',
+            data: [res[res.length-6]? res[res.length-6].peso: null ,res[res.length-5]? res[res.length-5].peso: null , res[res.length-4]? res[res.length-4].peso: null , res[res.length-3]? res[res.length-3].peso: null , res[res.length-2]? res[res.length-2].peso: null, res[res.length-1]? res[res.length-1].peso: null   ]
+          }]
+        };
+        if(this.mychart){
+          this.mychart.clear();
+          this.mychart.destroy();
+        }
+
+        this.mychart = new Chart(  <HTMLCanvasElement> document.getElementById('myChart'), {
+          type: 'line',
+          data: data,
+          options: { 
+            scales: {
+              y: {
+                min: 70,
+                max: 100,
+                position: right 
+              }
+          }
+        } });
+
+        if(this.mychart2){
+          this.mychart2.clear();
+          this.mychart2.destroy();
+        }
+
+
+        this.mychart2 = new Chart(<HTMLCanvasElement> document.getElementById('myChart2'), {
+          type: 'bar',
+          data: {
+            labels: ["Brazo", "Muslo", "Cintura"],
+            datasets: [
+              {
+                label: "Medida 1",
+                backgroundColor: "darkgray",
+                data: [ res[res.length-3]? res[res.length-3].pbrazo : null, res[res.length-3]? res[res.length-3].pcintura : null, res[res.length-3]? res[res.length-3].pmuslo : null]
+              }, {
+                label: "Medida 2",
+                backgroundColor: "darkgray",
+                data: [res[res.length-2]? res[res.length-2].pbrazo : null,   res[res.length-2]? res[res.length-2].pcintura : null,res[res.length-2]? res[res.length-2].pmuslo : null]
+              },
+              {
+                label: "Medida actual",
+                backgroundColor: "#29317F",
+                data: [res[res.length-1]? res[res.length-1].pbrazo : null,   res[res.length-1]? res[res.length-1].pcintura : null,res[res.length-1]? res[res.length-1].pmuslo : null]
+              }
+            ] 
+          },
+          options: {
+            scales: {
+              y: {
+                min: 20,
+                max: 80,
+                position: right
+              }
+          }
+      }});
+
       },
       (err) => {
         console.warn("Error respuesta api:", err);

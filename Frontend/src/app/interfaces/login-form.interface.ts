@@ -14,3 +14,7 @@ export interface registrarmedidas{
 export interface registrarperfil{
     
 }
+
+export interface textForm{
+    
+}

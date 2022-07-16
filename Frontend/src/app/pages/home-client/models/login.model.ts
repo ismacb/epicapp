@@ -35,4 +35,10 @@ export class Usuario {
      titulacion?: string,
      imagen?: string
   }
+
+  export interface textForm {
+    mensaje: string,
+    ide: number,
+    idr: number
+ }
   

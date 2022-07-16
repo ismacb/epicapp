@@ -1,0 +1,46 @@
+<div class="main-container">
+    <div class="row">
+        <div class="col-12">
+            <div style="text-align: center; padding-top: 1em;">
+                <span routerLink="../chat" class="material-symbols-outlined" style="font-size: 40px;color: darkgray;margin-left: -83px; margin-top: 13px;">
+                    chevron_left
+                </span>
+                <h1 style="color: #232a68;">CHAT</h1>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-12" style="text-align: center;">
+            <h2>{{this.nick}}</h2>
+        </div>
+    </div>
+    <hr>
+    <div class="row" *ngFor="let item of todo">
+        <p [ngStyle]="{'text-align': (item.tipos != 'emisor') ? 'right' : 'left'}">
+            {{item.mens}}
+        </p>
+    </div>
+    <div class="row">
+        <div class="cols-12">
+            <p>{{this.msg[0]}}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="cols-12" style="text-align: right ;">
+            <p>{{this.msg[1]}}</p>
+        </div>
+    </div>
+
+
+    <br>
+    <div class="row">
+        <form class="form" (ngSubmit)="enviarmensaje()" [formGroup]="textForm">
+            <input type="number" style="display: none ;" name="emisor" formControlName="ide">
+            <input type="number" style="display: none;" name="receptor" formControlName="idr">
+            <input type="text" id="texto" class="form__field" placeholder="Introduce el texto" formControlName="mensaje" />
+            <button type="submit" class="btn btn--primary btn--inside uppercase">Enviar</button>
+        </form>
+    </div>
+
+</div>

@@ -64,7 +64,6 @@ export class PerfilComponent implements OnInit {
   }
 
   actualizar(){
-    debugger;
     var nombre2= this.registrarperfil.get('nombre')?.value;
     var apellidos2= this.registrarperfil.get('apellidos')?.value;
     var edad2= this.registrarperfil.get('edad')?.value;

@@ -7,6 +7,8 @@ import { HomeClientComponent } from './home-client/home-client.component';
 import { NavbarComponent } from '../common/navbar/navbar.component';
 import { PerfilComponent } from './perfil/perfil.component';
 import { EstadisticasComponent } from './estadisticas/estadisticas.component';
+import { ChatComponent } from './chat/chat.component';
+import { ConverComponent } from './conver/conver.component';
 
 
 const routes: Routes = [   
@@ -16,6 +18,8 @@ const routes: Routes = [
     { path: 'home-client', component: HomeClientComponent},
     { path: 'perfil', component: PerfilComponent},
     { path: 'estadisticas', component: EstadisticasComponent},
+    { path: 'chat', component: ChatComponent},
+    { path: 'conver', component: ConverComponent},
     // { path: 'home-coach', component: HomeCoachComponent},
 
 ];

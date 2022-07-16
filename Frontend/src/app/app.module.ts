@@ -11,6 +11,9 @@ import { UserComponent } from './pages/user/user.component';
 import { CreateUserComponent } from './pages/user/create-user/create-user.component';
 import { EstadisticasComponent } from './pages/estadisticas/estadisticas.component';
 import { PerfilComponent } from './pages/perfil/perfil.component';
+import { CommonModule } from '@angular/common';
+import { ConverComponent } from './pages/conver/conver.component';
+import { ChatComponent } from './pages/chat/chat.component';
 
 
 @NgModule({
@@ -22,7 +25,9 @@ import { PerfilComponent } from './pages/perfil/perfil.component';
     CreateUserComponent,
     UserComponent,
     EstadisticasComponent,
-    PerfilComponent
+    PerfilComponent,
+    ConverComponent,
+    ChatComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,6 +35,7 @@ import { PerfilComponent } from './pages/perfil/perfil.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    CommonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

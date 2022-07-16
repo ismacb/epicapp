@@ -21,7 +21,6 @@ export class HomeClientComponent implements OnInit {
     var fechahoy= '2022-07-15';
     this.entrenos(fechahoy);
     this.safe = this.transformYourHtml(this.mensaje);
-    debugger;
   }
 
   transformYourHtml(htmlTextWithStyle: string) {

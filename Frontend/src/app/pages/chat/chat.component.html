@@ -1,0 +1,28 @@
+<div class="main-container">
+    <div class="row">
+        <div class="col-12">
+            <div style="text-align: center; padding-top: 1em;">
+                <h1 style="color: #232a68;">CHAT</h1>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-12" style="text-align: center;">
+            <h2>Conversaciones</h2>
+        </div>
+    </div>
+
+    <div class="row">
+        <div style="text-align: center; padding-top: 20px;">
+            <button style="background-color: darkgray ; color:#232a68; font-size: 30px;" (click)="nuevo()" routerLinkActive="router-link-active" class="button-40 input-submit" role="button">Nueva conversación</button>
+        </div>
+    </div>
+
+    <div class="row" *ngFor="let item of id">
+        <div style="text-align: center; padding-top: 20px;">
+            <button (click)="conver(item.id, item.nick)" routerLinkActive="router-link-active" class="button-40 input-submit" role="button">{{item.nick}}</button>
+        </div>
+    </div>
+
+</div>
