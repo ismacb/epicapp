@@ -14,14 +14,26 @@ export class EntrenoComponent implements OnInit {
   public seg: number = 0;
   public min: number = 0;
   public hora: number = 0;
+  public tiempo: number =0;
   public interval: any;
   public entreno: number =0;
   public rir:number =0;
   public text: string ="";
   public lista: Array<any> = [];
+  public nombre: string = "";
 
 ngOnInit(): void {
   this.entreno = parseInt(window.location.href.split("=")[1]);
+  this.nombre = window.location.href.split("=")[3];
+  this.tiempo = parseInt(window.location.href.split("=")[2]);
+  if(this.nombre.includes('%20')){
+    this.nombre.replace('%20', " ");
+    var hola= this.nombre.split("%20");
+    this.nombre = "";
+    for(let k=0;k<hola.length; k++){
+      this.nombre += hola[k]+ " ";
+    }
+  }
   this.ejercicios();
 }
 
@@ -38,7 +50,6 @@ ejercicios(){
         }
         this.lista.push(hola); 
       }
-      debugger;
     },
     (err) => {
       console.warn("Error respuesta api:", err);

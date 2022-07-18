@@ -16,6 +16,7 @@ import { ConverComponent } from './pages/conver/conver.component';
 import { ChatComponent } from './pages/chat/chat.component';
 import { HomeClientComponent } from './pages/home-client/home-client.component';
 import { EntrenoComponent } from './pages/entreno/entreno.component';
+import { ComidaComponent } from './pages/comida/comida.component';
 
 
 @NgModule({
@@ -31,7 +32,9 @@ import { EntrenoComponent } from './pages/entreno/entreno.component';
     ConverComponent,
     ChatComponent,
     HomeClientComponent,
-    EntrenoComponent
+    EntrenoComponent,
+    ComidaComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,

@@ -14,8 +14,6 @@ import { ComidaComponent } from './comida/comida.component';
 
 @NgModule({
   declarations: [  
-    UserComponent,  ComidaComponent,
-    
   ],
   exports: [
   ],

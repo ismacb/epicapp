@@ -45,7 +45,7 @@ const registerFood = async(req, res) => {
 //Devolver datos del alimento
 const getFood = async(req, res) => {
     try {
-        pool.query("SELECT * FROM comida WHERE id =" + req.query.id,
+        pool.query("SELECT al.* FROM comidaalimento ca, alimento al WHERE ca.id_alimento = al.id and ca.id_comida=" + req.query.id,
             async function(error, results) {
                 if (error)
                     throw error;

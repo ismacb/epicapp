@@ -47,7 +47,12 @@
     </div>
     <div class="row" *ngFor="let item of entreno">
         <div style="text-align: center; padding-top: 20px;">
-            <button (click)="ruta(item.id)" routerLinkActive="router-link-active" class="button-40 input-submit" role="button">{{item.nombre}}</button>
+            <button (click)="ruta(item.id, item.nombre, item.minutos)" [ngStyle]="{'background-color': item.hecho? 'green': '#232a68'}" routerLinkActive="router-link-active" class="button-40 input-submit" role="button">{{item.nombre}}</button>
+        </div>
+    </div>
+    <div class="row" *ngIf="entreno.length==0">
+        <div style="text-align: center; padding-top: 20px;">
+            <button class="button-40 input-submit" role="button" style="border: 5px solid #232a68; background-color: white; color: #232a68">¡Aún no tienes entrenamientos para hoy!</button>
         </div>
     </div>
     <hr style="margin-top: 50px ; width: 300px;">
@@ -58,7 +63,12 @@
     </div>
     <div class="row" *ngFor="let item of comida">
         <div style="text-align: center; padding-top: 20px;">
-            <button routerLinkActive="router-link-active" class="button-40 input-submit" role="button" style="background-color: darkgray ;">{{item.tipo}}</button>
+            <button (click)="rutas(item.id, item.tipo,item.kcal)" [ngStyle]="{'background-color': item.hecho? 'green': 'darkgray'}" class="button-40 input-submit" role="button" style="background-color: darkgray ;">{{item.tipo}}</button>
+        </div>
+    </div>
+    <div class="row" *ngIf="comida.length==0">
+        <div style="text-align: center; padding-top: 20px;">
+            <button class="button-40 input-submit" role="button" style="border: 5px solid #232a68; background-color: white; color: #232a68">¡Aún no tienes comidas para hoy!</button>
         </div>
     </div>
 </div>

@@ -48,7 +48,7 @@ export class HomeClientComponent implements OnInit {
             for(let i=0;i<res.comida.length; i++){
               const comid = { 
                 tipo: res.comida[i].tipo,
-                kcal: res.comida[i].kcal,
+                kcal: res.comida[i].totalkcal,
                 hecho: res.comida[i].hecho,
                 id: res.comida[i].id,                
               }
@@ -80,8 +80,12 @@ export class HomeClientComponent implements OnInit {
     this.mesnum = fecha.getMonth()+1;
   }
 
-  ruta(id: number){
-    window.location.href="../entreno?id="+id;
+  ruta(id: number, nombre: string, tiempo: number){
+    window.location.href="../entreno?id="+id+"&tie="+tiempo+"&nom="+nombre;
+  }
+
+  rutas(id: number, tipo: string, kcal: number){
+    window.location.href="../comida?id="+id+"&tipo="+tipo+"&kcal="+kcal;
   }
 
   masdia(){

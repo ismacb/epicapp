@@ -113,6 +113,18 @@ export class UserService {
       );
     }
 
+    getFeedings(id:number){
+      return this.http.get(`${environment.base_url}/foods/food?token=`+this.token+`&id=`+id, this.cabeceras).pipe(
+        tap( (res : any) => {})
+      );
+    }
+
+    comidafin(id:number){
+      return this.http.put(`${environment.base_url}/feeds/edit/end?token=`+this.token+`&id=`+id,this.cabeceras).pipe(
+        tap( (res : any) => {})
+      );
+    }
+
       get rol(): string {
         return this.user.rol;
       }

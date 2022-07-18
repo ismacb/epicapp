@@ -103,6 +103,26 @@ const editFeed = async(req, res) => {
     }
 };
 
+const hechofeed = async(req, res) => {
+    try {
+        pool.query("UPDATE comida set hecho => true where id_comida=" + req.query.id,
+            async function(error, results) {
+                if (error)
+                    throw error;
+                res.status(200).json(results);
+            });
+
+    } catch (error) {
+        console.log(error);
+        return res.status(400).json({
+            ok: false,
+            msg: "Error en hechofeed",
+            token: "",
+        });
+    }
+};
+
+
 //Elimina una comida
 const deleteFeed = async(req, res) => {
     try {
@@ -123,4 +143,4 @@ const deleteFeed = async(req, res) => {
     }
 };
 
-module.exports = { getAllFeedings, registerFeed, getFeed, getCoach, editFeed, deleteFeed };
+module.exports = { getAllFeedings, registerFeed, getFeed, getCoach, editFeed, deleteFeed, hechofeed };
