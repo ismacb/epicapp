@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const { validarJWT } = require("../middleware/validar-jwt");
-const { getAllCustomers, registerCustomer, getCustomer, editCustomer, getCoachsbyCustomer, deleteCustomer, getTrains, getTrainbyDate, getFeedbyDate, getFeeds, getTrainFeed, getMetricas, getContactos, putMetricas, getMensajes, putMensajes, getId } = require("../controllers/customers");
+const { getAllCustomers, registerCustomer, getCustomer, editCustomer, getCoachsbyCustomer, deleteCustomer, getTrains, getTrainbyDate, getFeedbyDate, getFeeds, getTrainFeed, getMetricas, getContactos, putMetricas, getMensajes, putMensajes, putMensajeNuevo } = require("../controllers/customers");
 
 const router = Router();
 
@@ -20,6 +20,6 @@ router.put("/datos", validarJWT, putMetricas);
 router.get("/contacts", validarJWT, getContactos);
 router.get("/mensajes", validarJWT, getMensajes);
 router.put("/mensajes", validarJWT, putMensajes);
-router.get("/nick", getId);
+router.put("/mensaje/nuevo", validarJWT, putMensajeNuevo);
 
 module.exports = router;

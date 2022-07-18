@@ -17,21 +17,10 @@
     </div>
     <hr>
     <div class="row" *ngFor="let item of todo">
-        <p [ngStyle]="{'text-align': (item.tipos != 'emisor') ? 'right' : 'left'}">
+        <p [ngStyle]="{'text-align': (item.tipos != 'receptor') ? 'right' : 'left', 'color': (item.tipos != 'receptor') ? '#232a68' : 'darkgray'}">
             {{item.mens}}
         </p>
     </div>
-    <div class="row">
-        <div class="cols-12">
-            <p>{{this.msg[0]}}</p>
-        </div>
-    </div>
-    <div class="row">
-        <div class="cols-12" style="text-align: right ;">
-            <p>{{this.msg[1]}}</p>
-        </div>
-    </div>
-
 
     <br>
     <div class="row">

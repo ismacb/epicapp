@@ -248,12 +248,17 @@ const getFeedbyDate = async(req, res) => {
 //Devuelve todos los entrenamientos y comidas del entrenador
 const getTrainFeed = async(req, res) => {
     try {
-        pool.query("SELECT * FROM entrenamiento, comida WHERE entrenamiento.id_cliente =" + req.query.id + " and comida.id_cliente =" + req.query.id +
-            " and entrenamiento.fecha = '" + req.query.fecha + "' and comida.fecha='" + req.query.fecha + "'",
+        pool.query("SELECT * FROM entrenamiento WHERE id_cliente =" + req.query.id + " and fecha = '" + req.query.fecha + "'",
             async function(error, results) {
                 if (error)
                     throw error;
-                res.status(200).json(results);
+                pool.query("SELECT * FROM comida WHERE id_cliente =" + req.query.id + " and fecha = '" + req.query.fecha + "'",
+                    async function(error, results2) {
+                        if (error)
+                            throw error;
+                        results = { comida: results2, entrenamiento: results }
+                        res.status(200).json(results);
+                    });
             });
 
     } catch (error) {
@@ -361,23 +366,56 @@ const putMensajes = async(req, res) => {
     }
 }
 
-const getId = async(req, res) => {
-    try {
-        pool.query("SELECT id FROM usuario WHERE nick =" + req.query.nick,
-            async function(error, results) {
-                if (error)
-                    throw error;
-                res.status(200).json(results);
-            });
+// const getId = async(req, res) => {
+//     try {
+//         pool.query("SELECT id FROM usuario WHERE nick =" + req.query.nick,
+//             async function(error, results) {
+//                 if (error)
+//                     throw error;
+//                 res.status(200).json(results);
+//             });
 
+//     } catch (error) {
+//         console.log(error);
+//         return res.status(400).json({
+//             ok: false,
+//             msg: "Error en getMetricas",
+//             token: "",
+//         });
+//     }
+// }
+
+const putMensajeNuevo = async(req, res) => {
+
+    try {
+        pool.query("SELECT id FROM usuario us WHERE us.nick ='" + req.query.nick + "'",
+            async function(error, results) {
+                if (error) {
+                    res.status(400).json(error);
+                    //throw error;
+                } else {
+                    if (results.length == 0) {
+                        res.status(200).json(results);
+                    } else if (results[0].id == req.query.id) {
+                        res.status(200).json('mismo');
+                    } else {
+                        pool.query("INSERT INTO chat (id_emisor, id_receptor, mensaje) values (" + req.query.id + ", " + results[0].id + ",'" + req.query.mensaje + "')",
+                            async function(error2, results2) {
+                                if (error2)
+                                    throw error2;
+                                res.status(200).json(results2);
+                            });
+                    }
+                }
+            });
     } catch (error) {
         console.log(error);
         return res.status(400).json({
             ok: false,
-            msg: "Error en getMetricas",
+            msg: "Error en putMensajeNuevo",
             token: "",
         });
     }
 }
 
-module.exports = { getAllCustomers, registerCustomer, getCustomer, editCustomer, getCoachsbyCustomer, deleteCustomer, getTrains, getTrainbyDate, getFeedbyDate, getFeeds, getTrainFeed, getMetricas, putMetricas, getContactos, getMensajes, putMensajes, getId }
+module.exports = { getAllCustomers, registerCustomer, getCustomer, editCustomer, getCoachsbyCustomer, deleteCustomer, getTrains, getTrainbyDate, getFeedbyDate, getFeeds, getTrainFeed, getMetricas, putMetricas, getContactos, getMensajes, putMensajes, putMensajeNuevo }

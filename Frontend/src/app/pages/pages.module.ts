@@ -3,7 +3,6 @@ import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'; //Formulario reactivo
 import { HttpClientModule } from "@angular/common/http";
 import { UserComponent } from './user/user.component';
-import { HomeClientComponent } from './home-client/home-client.component';
 import { PerfilComponent } from './perfil/perfil.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { NgChartsModule } from 'ng2-charts';
@@ -15,7 +14,6 @@ import { CommonModule } from '@angular/common';
 @NgModule({
   declarations: [  
     UserComponent,
-    HomeClientComponent,
     
   ],
   exports: [

@@ -51,9 +51,10 @@ export class ConverComponent implements OnInit {
             tipos : tipo,
             mens : res[p].mensaje
           }
-
           this.todo.push(hola);
         }
+
+        
       },
       (err) => {
         console.warn("Error respuesta api:", err);

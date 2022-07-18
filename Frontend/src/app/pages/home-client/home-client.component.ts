@@ -13,38 +13,34 @@ export class HomeClientComponent implements OnInit {
   public dia = 0;
   public mes = "";
   public mensaje = "";
-  public lista = [];
-  public safe : SafeHtml = ``;
+  public lista: Array<any> = [];
+
 
   ngOnInit(): void {
     this.fechaactual();
-    var fechahoy= '2022-07-15';
+    var fechahoy= '2022-07-18';
     this.entrenos(fechahoy);
-    this.safe = this.transformYourHtml(this.mensaje);
   }
 
   transformYourHtml(htmlTextWithStyle: string) {
     return this.sanitizer.bypassSecurityTrustHtml(htmlTextWithStyle);
 }
 
-  entrenos(date: string){
+  entrenos(date: string){ 
     var ids= 0;
-    if(sessionStorage.getItem('id') != null){
+    if(sessionStorage.getItem('id') != null){   
       ids= parseInt(sessionStorage.getItem('id') || "0");
     }
     this.userservice.getEntrenosNutricion(ids,date).subscribe(
       (res) => {
-        if(res.length > 0){
-          this.lista = res;
+        debugger;
+        this.lista= [];
+        if(res.length > 0){   
           for(let p=0; p<res.length ; p++){
-            if(res[p].totalkcal){
-              // this.mensaje += `<div><button routerLink="./feed?id=`+res[p].id+` class="button-41" role="button">`+ res[p].tipo +`</button></div>`;
-               this.mensaje += `<div><button class="button-41" role="button">`+ res[p].tipo +`</button></div><br>`;
+            const hola = {
+              tipo : res[p].tipo
             }
-            else{
-              // this.mensaje += `<div><button routerLink="./train?id=`+res[p].id+` class="button-40" role="button">`+ res[p].nombre +`</button></div>`;
-              this.mensaje += `<div><button class="button-40" role="button">`+ res[p].nombre +`</button></div><br>`;
-            }
+            this.lista.push(hola);
           }
         }
 

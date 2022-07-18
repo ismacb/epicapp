@@ -14,6 +14,7 @@ import { PerfilComponent } from './pages/perfil/perfil.component';
 import { CommonModule } from '@angular/common';
 import { ConverComponent } from './pages/conver/conver.component';
 import { ChatComponent } from './pages/chat/chat.component';
+import { HomeClientComponent } from './pages/home-client/home-client.component';
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import { ChatComponent } from './pages/chat/chat.component';
     PerfilComponent,
     ConverComponent,
     ChatComponent,
+    HomeClientComponent
   ],
   imports: [
     BrowserModule,

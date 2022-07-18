@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user.service';
 import Swal from 'sweetalert2';
-import { ConverComponent } from '../conver/conver.component';
 
 @Component({
   selector: 'app-chat',
@@ -14,6 +13,8 @@ export class ChatComponent implements OnInit {
   
   public personas: any = [];
   public id: Array<any> = [];
+  public nick = "";
+  public text = "";
 
   ngOnInit(): void {
     this.getContacts();
@@ -47,32 +48,70 @@ export class ChatComponent implements OnInit {
   }
 
   nuevo(){
+    var fallo = false;
     Swal.fire({
         title: "Enviar mensaje a",
-        html: `<input type="text" id="nick" class="nick" placeholder="Nick">
+        html: `<input type="text" id="nick" class="nick" placeholder="Nick" [(ngModel)]="nick">
          <input type="text" id="text" placeholder="Mensaje">`,
         confirmButtonText: 'Enviar',        
         allowOutsideClick: true,
         showCancelButton: true,
-        width: '230px',
+        width: '230px',        
         preConfirm: () => {
-          const nick = Swal.getPopup()?.getElementsByClassName("nick")[0];
+          const nick = (document.getElementById(
+            'nick'
+          ) as HTMLInputElement).value;
 
-          debugger;
+          const text = (document.getElementById(
+            'text'
+          ) as HTMLInputElement).value;
+
+          if(text == "" || nick == ""){
+            fallo= true;
+          }
+
+          this.nick = nick;
+          this.text = text;
           return { }
-        }
+        }        
     }).then((result) => {
-      debugger;
-      if(result.isDismissed){
-
+      if(fallo){
+        Swal.fire(
+          'Debes escribir el nick y un mensaje!'
+        )
       }
       else{
-        //this.userservice.getId(document.getElementById('nick'))
-        
-        Swal.fire(
-          'Mensaje enviado!',
-          'success'
-        )
+        var ids= 0;
+        if(sessionStorage.getItem('id') != null){
+          ids= parseInt(sessionStorage.getItem('id') || "0");
+        }
+        this.userservice.mensajeNuevo(ids, this.nick,this.text).subscribe(
+          (res) => {
+            if(res.length == 0){
+              Swal.fire(
+                'Este nick no existe :('
+              );
+            }
+            else if(res == "mismo"){
+              Swal.fire(
+                'No te puedes escribir a ti mismo'
+                );
+            }
+            else{
+              Swal.fire(
+                'Mensaje enviado!'
+                );
+            }
+            this.getContacts();
+          },
+          (err) => {
+            debugger;
+            Swal.fire(
+              'Este nick no existe'
+            );
+            console.warn("Error respuesta api:", err);
+          }
+        );
       }
     })
 

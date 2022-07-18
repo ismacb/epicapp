@@ -95,6 +95,12 @@ export class UserService {
       );
     }
 
+    mensajeNuevo(id: number, nick: string, texto: string){
+      return this.http.put(`${environment.base_url}/customers/mensaje/nuevo?token=`+this.token+`&id=`+id+`&nick=`+nick+`&mensaje=`+texto, this.cabeceras).pipe(
+        tap( (res : any) => {})
+      );
+    }
+
       get rol(): string {
         return this.user.rol;
       }
