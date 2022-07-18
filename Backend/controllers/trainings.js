@@ -45,7 +45,7 @@ const registerTrain = async(req, res) => {
 //Devolver datos del entrenamiento
 const getTrain = async(req, res) => {
     try {
-        pool.query("SELECT * FROM entrenamiento WHERE id =" + req.query.id,
+        pool.query("SELECT ej.* FROM entrenamientoejercicio ee, ejercicio ej WHERE ee.id_ejercicio = ej.id and ee.id_entrenamiento =" + req.query.id,
             async function(error, results) {
                 if (error)
                     throw error;

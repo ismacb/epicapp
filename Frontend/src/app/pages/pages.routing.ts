@@ -9,6 +9,8 @@ import { PerfilComponent } from './perfil/perfil.component';
 import { EstadisticasComponent } from './estadisticas/estadisticas.component';
 import { ChatComponent } from './chat/chat.component';
 import { ConverComponent } from './conver/conver.component';
+import { EntrenoComponent } from './entreno/entreno.component';
+import { ComidaComponent } from './comida/comida.component';
 
 
 const routes: Routes = [   
@@ -20,6 +22,8 @@ const routes: Routes = [
     { path: 'estadisticas', component: EstadisticasComponent},
     { path: 'chat', component: ChatComponent},
     { path: 'conver', component: ConverComponent},
+    { path: 'comida', component: ComidaComponent},
+    { path: 'entreno', component: EntrenoComponent},
     // { path: 'home-coach', component: HomeCoachComponent},
 
 ];

@@ -1,0 +1,68 @@
+<div class="main-container">
+    <div class="row">
+        <div class="col-12">
+            <div style="text-align: center; padding-top: 1em;">
+                <span routerLink="../home-client" class="material-symbols-outlined" style="font-size: 40px;color: darkgray; position: fixed; left: 40px; top: 45px;">
+                    chevron_left
+                </span>
+                <h1 style="color: #232a68;">ENTRENO</h1>
+                <span (click)="finentreno()" class="material-symbols-outlined" style="font-size: 60px;color: darkgray; position: fixed; right: 40px; top: 33px;">
+                    check_small</span>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="row" style="text-align: center ; color: #232a68;">
+        <h2>ENTRENO DE PECHO</h2>
+    </div>
+    <hr style="width: 300px ;">
+    <div class="row" style="text-align: -webkit-center;">
+        <table>
+            <tr>
+                <td style="background-color: #232a68; color: white;  border-radius: 25px; padding: 1em 5em;font-size: 1.4em;">
+                    Tiempo: 20'
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="row" style="text-align: -webkit-center;" *ngFor="let item of lista">
+        <table style=" text-align: center; padding: 1em 0.1em; border-radius: 25px; background-color: #232a68;  width: 355px; color: white; margin-top: 10px;">
+            <tr>
+                <td colspan="3">
+                    {{item.nombre}}
+                </td>
+            </tr>
+            <tr>
+                <td style="width:33%">
+                    Series<br> {{item.series}}
+                </td>
+                <td style="width:33%">
+                    Reps<br> {{item.reps}}
+                </td>
+                <td style="width:33%">
+                    RIR <br>{{item.rir}}
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="row" style="position: fixed; bottom: 65px; left: 18px;">
+        <table style=" text-align: center; padding: 1em 0.1em; border-radius: 25px; background-color: #232a68;  width: 355px; color: white; margin-top: 10px;">
+            <tr>
+                <td style="width: 70%; font-size: 28px">
+                    0{{hora}} : 0{{min}}' : {{seg}}"
+                </td>
+                <td style="width: 10%;" (click)="startTimer()" id="start">
+                    <span class="material-symbols-outlined" style="font-size: 40px;color: darkgray;">play_arrow</span>
+                </td>
+                <td style="width: 10%; " (click)="pauseTimer()" id="pausa">
+                    <span class="material-symbols-outlined" style="font-size: 40px;color: darkgray;">pause</span>
+                </td>
+                <td style="width: 10%;" (click)="resetTimer()" id="parar">
+                    <span class="material-symbols-outlined" style="font-size: 40px;color: darkgray; ">stop</span>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

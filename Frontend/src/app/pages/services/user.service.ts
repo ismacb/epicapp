@@ -101,6 +101,18 @@ export class UserService {
       );
     }
 
+    entrenofin(ide:number, rir: number, text: string){
+      return this.http.put(`${environment.base_url}/customers/train/end?token=`+this.token+`&ide=`+ide+`&rir=`+rir+`&mensaje=`+text, this.cabeceras).pipe(
+        tap( (res : any) => {})
+      );
+    }
+
+    getExercises(id:number){
+      return this.http.get(`${environment.base_url}/trainings/train?token=`+this.token+`&id=`+id, this.cabeceras).pipe(
+        tap( (res : any) => {})
+      );
+    }
+
       get rol(): string {
         return this.user.rol;
       }

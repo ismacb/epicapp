@@ -39,11 +39,26 @@
                 </span>
         </div>
     </div>
-    <br>
-    <br>
-    <div class="row" *ngFor="let item of lista">
+    <hr style="width: 300px;">
+    <div class="col-12">
+        <div style="text-align: center;">
+            <h2 style="color: #232a68;">ENTRENAMIENTO</h2>
+        </div>
+    </div>
+    <div class="row" *ngFor="let item of entreno">
         <div style="text-align: center; padding-top: 20px;">
-            <button routerLinkActive="router-link-active" class="button-40 input-submit" role="button">{{item.tipo}}</button>
+            <button (click)="ruta(item.id)" routerLinkActive="router-link-active" class="button-40 input-submit" role="button">{{item.nombre}}</button>
+        </div>
+    </div>
+    <hr style="margin-top: 50px ; width: 300px;">
+    <div class="col-12">
+        <div style="text-align: center;">
+            <h2 style="color: #232a68;">COMIDAS</h2>
+        </div>
+    </div>
+    <div class="row" *ngFor="let item of comida">
+        <div style="text-align: center; padding-top: 20px;">
+            <button routerLinkActive="router-link-active" class="button-40 input-submit" role="button" style="background-color: darkgray ;">{{item.tipo}}</button>
         </div>
     </div>
 </div>

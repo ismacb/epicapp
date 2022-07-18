@@ -418,4 +418,22 @@ const putMensajeNuevo = async(req, res) => {
     }
 }
 
-module.exports = { getAllCustomers, registerCustomer, getCustomer, editCustomer, getCoachsbyCustomer, deleteCustomer, getTrains, getTrainbyDate, getFeedbyDate, getFeeds, getTrainFeed, getMetricas, putMetricas, getContactos, getMensajes, putMensajes, putMensajeNuevo }
+const putTrainEnd = async(req, res) => {
+    try {
+        pool.query("UPDATE entrenamiento set obscliente ='" + req.query.mensaje + "', hecho= true, rir =" + req.query.rir + " WHERE id = " + req.query.ide,
+            async function(error, results) {
+                if (error)
+                    throw error;
+                res.status(200).json(results);
+            });
+    } catch (error) {
+        console.log(error);
+        return res.status(400).json({
+            ok: false,
+            msg: "Error en putTrainEnd",
+            token: "",
+        });
+    }
+};
+
+module.exports = { getAllCustomers, registerCustomer, getCustomer, editCustomer, getCoachsbyCustomer, deleteCustomer, getTrains, getTrainbyDate, getFeedbyDate, getFeeds, getTrainFeed, getMetricas, putMetricas, getContactos, getMensajes, putMensajes, putMensajeNuevo, putTrainEnd }
