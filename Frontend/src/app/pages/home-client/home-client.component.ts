@@ -12,20 +12,28 @@ export class HomeClientComponent implements OnInit {
 
   public dia = 0;
   public mes = "";
+  public mesnum = 0;
+  public año = 2022;
   public mensaje = "";
+  public fechahoy= '';
+  public meses=['ENERO', 'FEBRERO', 'MARZO', 'ABRIL', 'MAYO', 'JUNIO', 'JULIO', 'AGOSTO', 'SEPTIEMBRE', 'OCTUBRE', 'NOVIEMBRE', 'DICIEMBRE'];
   public comida: Array<any> = [];
   public entreno: Array<any> = [];
 
 
   ngOnInit(): void {
     this.fechaactual();
-    var fechahoy= '2022-07-18';
-    this.entrenos(fechahoy);
+    this.montardia();
+    this.entrenos(this.fechahoy);
+  }
+
+  montardia(){
+    this.fechahoy= this.año+"-"+this.mesnum+"-"+this.dia;
   }
 
   transformYourHtml(htmlTextWithStyle: string) {
     return this.sanitizer.bypassSecurityTrustHtml(htmlTextWithStyle);
-}
+  }
 
   entrenos(date: string){ 
     var ids= 0;
@@ -34,7 +42,6 @@ export class HomeClientComponent implements OnInit {
     }
     this.userservice.getEntrenosNutricion(ids,date).subscribe(
       (res) => {
-        debugger;
         this.comida= [];
         this.entreno= [];
           if(res.comida.length > 0){
@@ -59,10 +66,6 @@ export class HomeClientComponent implements OnInit {
               this.entreno.push(entre);
             }            
           }   
-
-        // else{
-        //   this.mensaje+=`<div><button class="button-41" role="button" style="background-color: white; color: black;">Hoy no tienes nada pendiente...</button></div>`;
-        // }
       },
       (err) => {
         console.warn("Error respuesta api:", err);
@@ -73,12 +76,38 @@ export class HomeClientComponent implements OnInit {
   fechaactual(){
     var fecha= new Date();
     this.dia = fecha.getDate();
-    var meses = ['ENERO', 'FEBRERO', 'MARZO', 'ABRIL', 'MAYO', 'JUNIO', 'JULIO', 'AGOSTO', 'SEPTIEMBRE', 'OCTUBRE', 'NOVIEMBRE', 'DICIEMBRE'];
-    this.mes = meses[fecha.getMonth()];
+    this.mes = this.meses[fecha.getMonth()];
+    this.mesnum = fecha.getMonth()+1;
   }
 
   ruta(id: number){
     window.location.href="../entreno?id="+id;
+  }
+
+  masdia(){
+    this.dia++;
+    this.montardia();
+    this.entrenos(this.fechahoy);
+  }
+
+  menosdia(){
+    this.dia--;
+    this.montardia();
+    this.entrenos(this.fechahoy);
+  }
+
+  masmes(){
+    this.mesnum++;
+    this.mes= this.meses[this.mesnum-1];
+    this.montardia();
+    this.entrenos(this.fechahoy);
+  }
+
+  menosmes(){
+    this.mesnum--;
+    this.mes= this.meses[this.mesnum+1]; 
+    this.montardia();
+    this.entrenos(this.fechahoy);
   }
 
 }

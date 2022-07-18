@@ -46,7 +46,6 @@ ejercicios(){
   );    
 }
 
-
 startTimer() {
     this.interval = setInterval(() => {
       if(this.seg < 59) {
