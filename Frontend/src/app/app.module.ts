@@ -17,6 +17,8 @@ import { ChatComponent } from './pages/chat/chat.component';
 import { HomeClientComponent } from './pages/home-client/home-client.component';
 import { EntrenoComponent } from './pages/entreno/entreno.component';
 import { ComidaComponent } from './pages/comida/comida.component';
+import { CreateSocialComponent } from './pages/social/create-social/create-social.component';
+import { SocialComponent } from './pages/social/social.component';
 
 
 @NgModule({
@@ -34,7 +36,9 @@ import { ComidaComponent } from './pages/comida/comida.component';
     HomeClientComponent,
     EntrenoComponent,
     ComidaComponent,
-    UserComponent
+    UserComponent,
+    CreateSocialComponent,
+    SocialComponent
   ],
   imports: [
     BrowserModule,

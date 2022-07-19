@@ -1,0 +1,37 @@
+<div class="main-container">
+    <div class="row">
+        <div class="col-12">
+            <div style="text-align: center; padding-top: 1em;">
+                <span routerLink="['../social']" class="material-symbols-outlined" style="font-size: 40px;color: darkgray; position: fixed; left: 30px; top: 45px;">
+                    chevron_left
+                </span>
+                <h1 style="color: #232a68;">NUEVO POST</h1>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-12">
+            <div style="text-align: center; padding-top: 1em;">
+                <h2 style="margin-bottom: 20px; color: #232a68;">Datos</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <form style="text-align:center; margin: 1em;" class="form" id="newpost" (ngSubmit)="publicar()" [formGroup]="newpost">
+                <label for="foto" style="background-color: darkgray; padding: 1em;border-radius: 15px; color: #232a68; text-align: center; margin-bottom: 1em;"> Subir imagen <input type="file" id="foto" (change)="capturarimagen($event)" accept="image/png, image/jpg, image/gif, image/jpeg" 
+                 ></label><br>
+                <div *ngIf="imagen" style="margin-top: 2em;"> <img [src]="imagen" width="250px"></div><br>
+                <input type="text" id="nombre" placeholder="Título" style="margin: .3em;" formControlName="titulo">
+                <br>
+                <input type="text" id="descripcion" placeholder="Descripción" style="margin: .3em;" formControlName="descripcion">
+                <br>
+                <input type="text" id="ubi" placeholder="Ubicación" style="margin: .3em;" formControlName="ubi">
+                <br>
+                <input type="submit" style="margin: 1em;" value="Publicar" style="width: 200px;background-color: #232a68; font-size: 20px; padding: 1em;border-radius: 15px;             color: white;         text-align: center;">
+            </form>
+        </div>
+    </div>
+</div>

@@ -41,4 +41,12 @@ export class Usuario {
     ide: number,
     idr: number
  }
+
+ export interface newpost {
+  imagen: string,
+  titulo: string,
+  descripcion: string,
+  ubi: string
+}
+
   

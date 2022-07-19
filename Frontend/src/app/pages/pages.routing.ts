@@ -11,19 +11,25 @@ import { ChatComponent } from './chat/chat.component';
 import { ConverComponent } from './conver/conver.component';
 import { EntrenoComponent } from './entreno/entreno.component';
 import { ComidaComponent } from './comida/comida.component';
+import { SocialComponent } from './social/social.component';
+import { CreateSocialComponent } from './social/create-social/create-social.component';
 
 
 const routes: Routes = [   
     { path: '', component: HomeComponent},
-    { path: 'login',component: LoginComponent},
-    { path: 'register', component: CreateUserComponent},
-    { path: 'home-client', component: HomeClientComponent},
+
+    { path: 'login',component: LoginComponent, children:[ { path: '', component: HomeClientComponent},
     { path: 'perfil', component: PerfilComponent},
     { path: 'estadisticas', component: EstadisticasComponent},
     { path: 'chat', component: ChatComponent},
     { path: 'conver', component: ConverComponent},
     { path: 'comida', component: ComidaComponent},
     { path: 'entreno', component: EntrenoComponent},
+    { path: 'social', component: SocialComponent},
+    { path: 'create-social', component: CreateSocialComponent} ]},
+
+    { path: 'register', component: CreateUserComponent},
+    
     // { path: 'home-coach', component: HomeCoachComponent},
 
 ];

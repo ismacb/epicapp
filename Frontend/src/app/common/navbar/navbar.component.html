@@ -1,4 +1,24 @@
-<div class="main-container" id="nav" *ngIf="this.token != null">
+<div class="main-container" id="nav" *ngIf="this.token != null && this.rol=='CLIENTE'">
+    <div class="row">
+        <div class="col" id="home" [routerLink]="['/home-client']">
+            <span class="material-symbols-outlined" id="homes">home</span>
+        </div>
+        <div class="col" [routerLink]="['/social']">
+            <span class="material-symbols-outlined">group</span>
+        </div>
+        <div class="col" [routerLink]="['/chat']">
+            <span class="material-symbols-outlined">sms</span>
+        </div>
+        <div class="col" [routerLink]="['/estadisticas']">
+            <span class="material-symbols-outlined">monitoring</span>
+        </div>
+        <div class="col" [routerLink]="['/perfil']">
+            <span class="material-symbols-outlined">account_circle</span>
+        </div>
+    </div>
+</div>
+
+<div class="main-container" id="nav" *ngIf="this.token != null && this.rol == 'ENTRENADOR'">
     <div class="row">
         <div class="col" id="home" [routerLink]="['/home-client']">
             <span class="material-symbols-outlined" id="homes">home</span>

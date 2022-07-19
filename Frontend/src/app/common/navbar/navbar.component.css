@@ -45,3 +45,7 @@ span {
 .col:focus {
     color: darkgray;
 }
+
+.col:focus span {
+    color: #232a68;
+}

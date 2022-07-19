@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from "../../../environments/environment";
 import { tap, map, catchError } from "rxjs/operators";
-import { loginForm, registerForm, registrarmedidas, registrarperfil, textForm } from '../../interfaces/login-form.interface';
+import { loginForm, registerForm, registrarmedidas, registrarperfil, textForm, newpost } from '../../interfaces/login-form.interface';
 import { Usuario } from "../login/models/login.model";
 import { Router } from '@angular/router';
 
@@ -120,11 +120,29 @@ export class UserService {
     }
 
     comidafin(id:number){
-      return this.http.put(`${environment.base_url}/feeds/edit/end?token=`+this.token+`&id=`+id,this.cabeceras).pipe(
+      return this.http.put(`${environment.base_url}/feedings/edit/end?token=`+this.token+`&id=`+id,this.cabeceras).pipe(
         tap( (res : any) => {})
       );
     }
 
+    nuevoPost(id: number, formData: newpost){
+      return this.http.post(`${environment.base_url}/posts/register?token=`+this.token+`&id=`+id, formData,this.cabeceras).pipe(
+        tap( (res : any) => {})
+      );
+    }
+
+    getPosts(){
+      return this.http.get(`${environment.base_url}/posts?token=`+this.token, this.cabeceras).pipe(
+        tap( (res : any) => {})
+      );
+    }
+
+    upload(formdata: any){
+      return this.http.post(`${environment.base_url}/upload?token=`+this.token, formdata, this.cabeceras).pipe(
+        tap( (res : any) => {})
+      );
+    }
+    
       get rol(): string {
         return this.user.rol;
       }

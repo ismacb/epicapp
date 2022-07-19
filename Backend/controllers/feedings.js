@@ -105,7 +105,7 @@ const editFeed = async(req, res) => {
 
 const hechofeed = async(req, res) => {
     try {
-        pool.query("UPDATE comida set hecho => true where id_comida=" + req.query.id,
+        pool.query("UPDATE comida set hecho = true where id=" + req.query.id,
             async function(error, results) {
                 if (error)
                     throw error;

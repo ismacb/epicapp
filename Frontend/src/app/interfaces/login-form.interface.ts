@@ -18,3 +18,7 @@ export interface registrarperfil{
 export interface textForm{
     
 }
+
+export interface newpost{
+    
+}

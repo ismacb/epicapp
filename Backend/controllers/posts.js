@@ -3,7 +3,7 @@ let pool = require('../database/configdb.js');
 //Devuelve todos los posts
 const getAllPosts = async(req, res) => {
     try {
-        pool.query("SELECT * FROM post",
+        pool.query("SELECT post.id as idp, post.*, usuario.nick  FROM post, usuario WHERE usuario.id = id_usuario",
             async function(error, results) {
                 if (error)
                     throw error;
@@ -23,12 +23,12 @@ const getAllPosts = async(req, res) => {
 //Registrar post
 const registerPost = async(req, res) => {
     try {
-        pool.query("INSERT INTO post (imagen, descripcion, comentarios, likes, ubicacion) values" +
-            "('" + req.body.imagen + "', '" + req.body.descripcion + "', '" + req.body.comentarios + "', " + req.body.likes + ", '" + req.body.ubicacion + "')",
+        pool.query("INSERT INTO post (id_usuario, imagen, titulo, descripcion, likes, ubicacion) values" +
+            "(" + req.query.id + ",'" + req.body.imagen + "', '" + req.body.titulo + "','" + req.body.descripcion + "', 0, '" + req.body.ubi + "')",
             async function(err, response) {
                 if (err) throw err;
                 if (response) {
-                    res.status(200).json(results);
+                    res.status(200).json(response);
                 }
             });
 

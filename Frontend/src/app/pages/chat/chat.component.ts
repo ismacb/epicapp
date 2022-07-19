@@ -75,6 +75,8 @@ export class ChatComponent implements OnInit {
           return { }
         }        
     }).then((result) => {
+      if(!result.dismiss){
+      
       if(fallo){
         Swal.fire(
           'Debes escribir el nick y un mensaje!'
@@ -113,6 +115,7 @@ export class ChatComponent implements OnInit {
           }
         );
       }
+    }
     })
 
   }

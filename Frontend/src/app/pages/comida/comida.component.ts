@@ -27,10 +27,18 @@ export class ComidaComponent implements OnInit {
   alimentos(){
     this.userservice.getFeedings(this.comida).subscribe(
       (res) => {
-        Swal.fire(
-          'Feedback reportado!'
-          );
-        window.location.href="./home-client"; 
+        this.lista=[];
+        for(let i=0;i<res.length;i++){
+          const hola = {
+            nombre: res[i].nombre ,
+            cantidad: res[i].cantidad ,
+            hc: res[i].hc ,
+            proteina: res[i].proteina ,
+            grasas: res[i].grasa ,
+            kcal: res[i].kcal ,
+          }
+          this.lista.push(hola);
+        }
       },
       (err) => {
         console.warn("Error respuesta api:", err);
@@ -47,10 +55,11 @@ export class ComidaComponent implements OnInit {
   }).then((result) => {
       this.userservice.comidafin(this.comida).subscribe(
         (res) => {
+          debugger;
             Swal.fire(
               'Feedback reportado!'
               );
-            window.location.href="./home-client";          
+            window.location.href="../home-client";          
         },
         (err) => {
           console.warn("Error respuesta api:", err);

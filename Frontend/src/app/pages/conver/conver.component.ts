@@ -31,6 +31,7 @@ export class ConverComponent implements OnInit {
     this.idr = parseInt(window.location.href.split("=")[1]);
     this.nick = window.location.href.split("=")[2];
     this.mensajes();
+
   }
 
   mensajes(){

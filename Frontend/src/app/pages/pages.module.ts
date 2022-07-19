@@ -8,12 +8,12 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { NgChartsModule } from 'ng2-charts';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { CommonModule } from '@angular/common';
-import { ComidaComponent } from './comida/comida.component';
 
 
 
 @NgModule({
   declarations: [  
+  
   ],
   exports: [
   ],

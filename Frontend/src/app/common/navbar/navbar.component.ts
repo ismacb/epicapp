@@ -11,6 +11,7 @@ export class NavbarComponent implements OnInit {
   constructor(public login: UserService) {
   }
   public token = sessionStorage.getItem('x-token');
+  public rol = sessionStorage.getItem('rol');
 
   ngOnInit(): void {
   }
