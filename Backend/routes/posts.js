@@ -4,7 +4,7 @@ const { getAllPosts, registerPost, getPost, editPost, deletePost } = require("..
 
 const router = Router();
 
-router.get("/", validarJWT, getAllPosts);
+router.get("/", getAllPosts);
 router.post("/register", validarJWT, registerPost);
 router.get("/post", validarJWT, getPost);
 router.put("/edit", validarJWT, editPost);

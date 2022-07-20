@@ -119,4 +119,12 @@ export class PerfilComponent implements OnInit {
     }
   );
 }
+
+  cerrarsesion(){
+    sessionStorage.removeItem('id');
+    sessionStorage.removeItem('x-token');
+    sessionStorage.removeItem('rol');
+    window.location.href= './login';
+  }
+
 }

@@ -1,24 +1,33 @@
 <div class="main-container">
-    <div class="row">
+    <div class="row" style=" position: fixed;  width: 100%; background-color: white;">
         <div class="col-12">
             <div style="text-align: center; padding-top: 1em;">
-                <span class="material-symbols-outlined" style="font-size: 40px;color: darkgray; position: fixed; left: 40px; top: 45px;">
+                <span *ngIf="tipo=='N'" class="material-symbols-outlined" routerLink="../" style="font-size: 40px;color: darkgray; position: fixed; left: 40px; top: 45px;">
+                    chevron_left
+                </span>
+                <span *ngIf="tipo=='ENTRENADOR' || tipo=='CLIENTE'" class="material-symbols-outlined" style="font-size: 40px;color: darkgray; position: fixed; left: 40px; top: 45px;">
                     search
                 </span>
                 <h1 style="color: #29317F;">SOCIAL</h1>
-                <span routerLink="../create-social" routerLinkActive="router-link-active" class="material-symbols-outlined" style="font-size: 40px;color: darkgray; position: fixed; right: 40px; top: 40px;">
+                <span *ngIf="tipo=='ENTRENADOR' || tipo=='CLIENTE'" routerLink="../create-social" routerLinkActive="router-link-active" class="material-symbols-outlined" style="font-size: 40px;color: darkgray; position: fixed; right: 40px; top: 40px;">
                     add</span>
+                <span *ngIf="tipo=='N'" routerLink="../create-social" routerLinkActive="router-link-active" class="material-symbols-outlined" style="font-size: 40px;color: darkgray; position: fixed; right: 40px; top: 45px;">
+                        search</span>
             </div>
         </div>
     </div>
-    <hr>
+    <hr style="position: fixed;
+    top: 94px;
+    width: 100%;left: 0;">
 
+    <br>
+    <br><br><br><br><br><br>
 
     <div class="row" *ngFor="let item of lista">
         <div class="col-12">
             <table style="text-align: center; width: 100%;">
                 <tr>
-                    <td colspan="3" style="text-align: left; color: #29317F; font-size: 30px; margin-left: 50px;">&nbsp;&nbsp;&nbsp;&nbsp;{{item.nick}}</td>
+                    <td colspan="3" style="text-align: left; color: #29317F; font-size: 30px; margin-left: 50px;">&nbsp;&nbsp;&nbsp;{{item.nick}}</td>
                 </tr>
                 <tr>
                     <td colspan="3" style="text-align: left; color: darkgray; margin-left: 20px;">&nbsp;&nbsp;&nbsp;&nbsp;{{item.ubicacion}}</td>
@@ -30,14 +39,14 @@
                 </tr>
                 <tr>
                     <td style="width: 15%">
-                        <span class="material-symbols-outlined" style="font-size: 20px;color: darkgray; ">
+                        <span *ngIf="tipo=='ENTRENADOR' || tipo=='CLIENTE'" class="material-symbols-outlined" style="font-size: 20px;color: darkgray; ">
                             favorite</span>
                     </td>
                     <td style="text-align: left ; color: #29317F;">
                         {{item.likes}} likes
                     </td>
                     <td>
-                        <span routerLink="../chat" class="material-symbols-outlined" style="font-size: 20px;color: darkgray; ">
+                        <span *ngIf="tipo=='ENTRENADOR' || tipo=='CLIENTE'" routerLink="../chat" class="material-symbols-outlined" style="font-size: 20px;color: darkgray; ">
                             sms</span>
                     </td>
                 </tr>

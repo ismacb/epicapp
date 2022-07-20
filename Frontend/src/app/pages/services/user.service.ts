@@ -132,13 +132,31 @@ export class UserService {
     }
 
     getPosts(){
-      return this.http.get(`${environment.base_url}/posts?token=`+this.token, this.cabeceras).pipe(
+      return this.http.get(`${environment.base_url}/posts`).pipe(
         tap( (res : any) => {})
       );
     }
 
     upload(formdata: any){
       return this.http.post(`${environment.base_url}/upload?token=`+this.token, formdata, this.cabeceras).pipe(
+        tap( (res : any) => {})
+      );
+    }
+
+    getClientes(id:number){
+      return this.http.get(`${environment.base_url}/coaches/customers?token=`+this.token+`&id=`+id, this.cabeceras).pipe(
+        tap( (res : any) => {})
+      );
+    }
+
+    deleteCliente(ide:number, idc: number){
+      return this.http.delete(`${environment.base_url}/coaches/customer/delete?token=`+this.token+`&ide=`+ide+`&idc=`+idc, this.cabeceras).pipe(
+        tap( (res : any) => {})
+      );
+    }
+
+    unirCliente(ide:number, nick: string){
+      return this.http.put(`${environment.base_url}/coaches/customer/new?token=`+this.token+`&ide=`+ide+`&nick=`+nick, this.cabeceras).pipe(
         tap( (res : any) => {})
       );
     }

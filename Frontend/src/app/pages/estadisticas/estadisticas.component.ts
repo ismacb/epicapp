@@ -24,6 +24,8 @@ export class EstadisticasComponent implements OnInit {
   public mychart: any;
   public mychart2: any;
   public jsonStrVisitProv = '[]';
+  public id: number =0;
+  public viene: any = "";
 
   public registrarmedidas = new FormGroup({
     altura : new FormControl(0, [Validators.required]),
@@ -35,15 +37,20 @@ export class EstadisticasComponent implements OnInit {
   });
 
   ngOnInit(): void {
+    if (window.location.href.split("=").length>0){
+      this.id= parseInt(window.location.href.split("=")[1]);
+      this.viene = "en";
+    }
+    else{
+      this.id= parseInt(sessionStorage.getItem('id') || "0");  
+      this.viene= "cli";    
+    }
     this.getDatos();    
   }
 
   getDatos(){
-    var ids= 0;
-    if(sessionStorage.getItem('id') != null){
-      ids= parseInt(sessionStorage.getItem('id') || "0");
-    }
-    this.userservice.getDatos(ids).subscribe(
+    debugger;
+    this.userservice.getDatos(this.id).subscribe(
       (res) => {
         var ult= res[res.length-1];
         this.altura = ult.altura;

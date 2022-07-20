@@ -1,9 +1,9 @@
 <div class="main-container" id="nav" *ngIf="this.token != null && this.rol=='CLIENTE'">
     <div class="row">
-        <div class="col" id="home" [routerLink]="['/home-client']">
+        <div class="col" id="home" routerLink="./home-client">
             <span class="material-symbols-outlined" id="homes">home</span>
         </div>
-        <div class="col" [routerLink]="['/social']">
+        <div class="col" routerLink="./social">
             <span class="material-symbols-outlined">group</span>
         </div>
         <div class="col" [routerLink]="['/chat']">
@@ -20,19 +20,16 @@
 
 <div class="main-container" id="nav" *ngIf="this.token != null && this.rol == 'ENTRENADOR'">
     <div class="row">
-        <div class="col" id="home" [routerLink]="['/home-client']">
+        <div class="col" id="home" [routerLink]="['/home-coach']">
             <span class="material-symbols-outlined" id="homes">home</span>
         </div>
-        <div class="col" [routerLink]="['/home-client']">
+        <div class="col" [routerLink]="['/social']">
             <span class="material-symbols-outlined">group</span>
         </div>
-        <div class="col">
+        <div class="col" [routerLink]="['/chat']">
             <span class="material-symbols-outlined">sms</span>
         </div>
-        <div class="col">
-            <span class="material-symbols-outlined">monitoring</span>
-        </div>
-        <div class="col">
+        <div class="col" [routerLink]="['/perfil']">
             <span class="material-symbols-outlined">account_circle</span>
         </div>
     </div>

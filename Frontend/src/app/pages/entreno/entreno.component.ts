@@ -109,6 +109,7 @@ startTimer() {
         return { }
       }        
   }).then((result) => {
+      if(!result.dismiss){
       var ids= 0;
       if(sessionStorage.getItem('id') != null){
         ids= parseInt(sessionStorage.getItem('id') || "0");
@@ -123,7 +124,8 @@ startTimer() {
         (err) => {
           console.warn("Error respuesta api:", err);
         }
-      );    
+      );
+      }    
   })
 
   }

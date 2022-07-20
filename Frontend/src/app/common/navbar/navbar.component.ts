@@ -12,8 +12,10 @@ export class NavbarComponent implements OnInit {
   }
   public token = sessionStorage.getItem('x-token');
   public rol = sessionStorage.getItem('rol');
+  public pag = "";
 
   ngOnInit(): void {
+    this.pag = window.location.href.split("/")[3];
   }
 
 }

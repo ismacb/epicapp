@@ -31,10 +31,6 @@ export class HomeClientComponent implements OnInit {
     this.fechahoy= this.año+"-"+this.mesnum+"-"+this.dia;
   }
 
-  transformYourHtml(htmlTextWithStyle: string) {
-    return this.sanitizer.bypassSecurityTrustHtml(htmlTextWithStyle);
-  }
-
   entrenos(date: string){ 
     var ids= 0;
     if(sessionStorage.getItem('id') != null){   

@@ -19,6 +19,7 @@ import { EntrenoComponent } from './pages/entreno/entreno.component';
 import { ComidaComponent } from './pages/comida/comida.component';
 import { CreateSocialComponent } from './pages/social/create-social/create-social.component';
 import { SocialComponent } from './pages/social/social.component';
+import { HomeCoachComponent } from './pages/home-coach/home-coach.component';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { SocialComponent } from './pages/social/social.component';
     ComidaComponent,
     UserComponent,
     CreateSocialComponent,
-    SocialComponent
+    SocialComponent,
+    HomeCoachComponent
   ],
   imports: [
     BrowserModule,

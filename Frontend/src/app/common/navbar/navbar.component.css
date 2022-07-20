@@ -43,6 +43,16 @@ span {
 }
 
 .col:focus {
+    background-color: darkgray;
+    color: #232a68;
+}
+
+.col:checked {
+    background-color: darkgray;
+    color: #232a68;
+}
+
+.col:focus {
     color: darkgray;
 }
 

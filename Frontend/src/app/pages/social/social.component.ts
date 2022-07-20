@@ -13,9 +13,11 @@ export class SocialComponent implements OnInit {
   constructor(private userservice: UserService, private domna: DomSanitizer ) { }
 
   public imagen : any;
-  public lista: Array<any>= [];
+  public lista: Array<any> = [];
+  public tipo: any;
 
   ngOnInit(): void {
+    this.tipo = sessionStorage.getItem('rol')? sessionStorage.getItem('rol'): "N";
     this.getposts();
   }
 

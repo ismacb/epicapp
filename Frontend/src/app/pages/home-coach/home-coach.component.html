@@ -1,0 +1,61 @@
+<div class="main-container">
+    <div class="row" style=" position: fixed;  width: 100%; background-color: white;">
+        <div class="col-12">
+            <div style="text-align: center; padding-top: 1em;">
+                <span (click)="nuevoCliente()" class="material-symbols-outlined" style="font-size: 40px;color: darkgray; position: fixed; right: 40px; top: 45px;">
+                    add
+                </span>
+                <h1 style="color: #232a68;">CLIENTES</h1>
+            </div>
+        </div>
+    </div>
+    <hr style="position: fixed;
+    top: 94px;
+    width: 100%;left: 0;">
+    <br><br><br><br><br><br>
+    <div class="row" *ngFor="let item of lista">
+        <div style="text-align: center;">
+            <table style=" text-align: center; padding: 1.2em; border-radius: 25px; background-color: #232a68;  color: white;">
+                <tr>
+                    <td style="width: 20% ;text-align:right;">
+                        <span style="color: darkgray;
+                                font-size: 50px" class="material-symbols-outlined">account_circle</span>
+                    </td>
+                    <td style="width: 60%; font-size: 33px; text-align:left;">
+                        &nbsp;&nbsp;&nbsp;{{item.nick}}
+                    </td>
+                    <td style="width: 20%;">
+                        <span (click)="deleteCliente(item.nick, item.id)" style="color: darkgray;
+                                font-size: 30px" class="material-symbols-outlined">delete</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        <button (click)="entrenos(item.id)" style="background-color: white; color:#232a68" routerLinkActive="router-link-active" class="button-40 input-submit" role="button">Entrenamientos</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        <button (click)="comidas(item.id)" style="background-color: white; color:#232a68" routerLinkActive="router-link-active" class="button-40 input-submit" role="button">Nutrición</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        <button (click)="estadis(item.id)" style="background-color: white; color:#232a68" routerLinkActive="router-link-active" class="button-40 input-submit" role="button">Estadísticas</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        <button (click)="chat(item.id, item.nick);" style="background-color: white; color:#232a68" routerLinkActive="router-link-active" class="button-40 input-submit" role="button">Chat</button>
+                    </td>
+                </tr>
+            </table>
+            <br><br><br>
+        </div>
+    </div>
+    <div class="row" *ngIf="lista.length==0">
+        <div style="text-align: center; padding-top: 20px;">
+            <button class="button-40 input-submit" role="button" style="border: 5px solid #232a68; background-color: white; color: #232a68">¡Aún no tienes clientes!</button>
+        </div>
+    </div>
+</div>

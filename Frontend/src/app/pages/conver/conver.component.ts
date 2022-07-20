@@ -31,8 +31,8 @@ export class ConverComponent implements OnInit {
     this.idr = parseInt(window.location.href.split("=")[1]);
     this.nick = window.location.href.split("=")[2];
     this.mensajes();
-
   }
+
 
   mensajes(){
     var ids= 0;
@@ -40,7 +40,7 @@ export class ConverComponent implements OnInit {
       ids= parseInt(sessionStorage.getItem('id') || "0");
       this.ide = ids;
     }
-    this.userservice.getMensajes(ids, this.idr ).subscribe(
+    this.userservice.getMensajes(ids,  this.idr).subscribe(
       (res) => {
         this.todo = [];
         for(let p=0; p<res.length;p++){

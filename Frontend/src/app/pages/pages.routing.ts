@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes, PreloadAllModules } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { CreateUserComponent } from './user/create-user/create-user.component';
@@ -13,12 +13,16 @@ import { EntrenoComponent } from './entreno/entreno.component';
 import { ComidaComponent } from './comida/comida.component';
 import { SocialComponent } from './social/social.component';
 import { CreateSocialComponent } from './social/create-social/create-social.component';
+import { HomeCoachComponent } from './home-coach/home-coach.component';
+import { EntrenosCoachComponent } from './entrenos-coach/entrenos-coach.component';
+import { ComidasCoachComponent } from './comidas-coach/comidas-coach.component';
 
 
 const routes: Routes = [   
     { path: '', component: HomeComponent},
-
-    { path: 'login',component: LoginComponent, children:[ { path: '', component: HomeClientComponent},
+    { path: 'login',component: LoginComponent},
+    { path: 'register', component: CreateUserComponent},
+    { path: 'home-client', component: HomeClientComponent},
     { path: 'perfil', component: PerfilComponent},
     { path: 'estadisticas', component: EstadisticasComponent},
     { path: 'chat', component: ChatComponent},
@@ -26,16 +30,16 @@ const routes: Routes = [
     { path: 'comida', component: ComidaComponent},
     { path: 'entreno', component: EntrenoComponent},
     { path: 'social', component: SocialComponent},
-    { path: 'create-social', component: CreateSocialComponent} ]},
+    { path: 'create-social', component: CreateSocialComponent},    
+    { path: 'home-coach', component: HomeCoachComponent},
+    { path: 'entrenos-coach', component: EntrenosCoachComponent},
+    { path: 'comidas-coach', component: ComidasCoachComponent},
 
-    { path: 'register', component: CreateUserComponent},
-    
-    // { path: 'home-coach', component: HomeCoachComponent},
 
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
+  imports: [RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })],
   exports: [RouterModule]
 })
 export class PagesRoutingModule { }

@@ -235,6 +235,49 @@ const getTrainFeed = async(req, res) => {
     }
 };
 
+const deleteCustomer = async(req, res) => {
+    try {
+        pool.query("DELETE FROM entrenadorcliente WHERE id_entrenador =" + req.query.ide + " and id_cliente=" + req.query.idc,
+            async function(error, results) {
+                if (error)
+                    throw error;
+                res.status(200).json(results);
+            });
+
+    } catch (error) {
+        console.log(error);
+        return res.status(400).json({
+            ok: false,
+            msg: "Error en deleteCustomer",
+            token: "",
+        });
+    }
+};
+
+const newCustomer = async(req, res) => {
+    try {
+        pool.query("SELECT id FROM usuario WHERE nick = '" + req.query.nick + "'",
+            async function(error, results) {
+
+                pool.query("INSERT INTO entrenadorcliente (id_entrenador, id_cliente) VALUES(" + req.query.ide + ", " + results[0].id + ")",
+                    async function(error, results) {
+                        if (error)
+                            throw error;
+                        res.status(200).json(results);
+                    });
+            });
+
+    } catch (error) {
+        console.log(error);
+        return res.status(400).json({
+            ok: false,
+            msg: "Error en newCustomer",
+            token: "",
+        });
+    }
+};
+
+
 module.exports = {
     getAllCoaches,
     registerCoach,
@@ -244,5 +287,7 @@ module.exports = {
     deleteCoach,
     getTrains,
     getFeeds,
-    getTrainFeed
+    getTrainFeed,
+    deleteCustomer,
+    newCustomer
 }

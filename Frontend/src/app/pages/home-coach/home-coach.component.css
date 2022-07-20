@@ -1,0 +1,43 @@
+.button-40 {
+    background-color: #29317F;
+    border: 1px solid transparent;
+    border-radius: .75rem;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    flex: 0 0 auto;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    padding: .75rem 2rem;
+    text-align: center;
+    text-decoration-thickness: auto;
+    transition-duration: .2s;
+    transition-property: background-color, border-color, color, fill, stroke;
+    transition-timing-function: cubic-bezier(.4, 0, 0.2, 1);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    width: 330px;
+}
+
+.button-41 {
+    background-color: darkgray;
+    border: 1px solid transparent;
+    border-radius: .75rem;
+    box-sizing: border-box;
+    color: #29317F;
+    cursor: pointer;
+    flex: 0 0 auto;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    padding: .75rem 2rem;
+    text-align: center;
+    text-decoration-thickness: auto;
+    transition-duration: .2s;
+    transition-property: background-color, border-color, color, fill, stroke;
+    transition-timing-function: cubic-bezier(.4, 0, 0.2, 1);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    width: 330px;
+}
