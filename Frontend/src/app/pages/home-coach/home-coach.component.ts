@@ -115,12 +115,12 @@ export class HomeCoachComponent implements OnInit {
     })
   }
 
-  entrenos(idc: number){
-    window.location.href= "./entrenos-coach?ide="+this.id+"&idc="+idc;
+  entrenos(idc: number, nick: string){
+    window.location.href= "./entrenos-coach?ide="+this.id+"&idc="+idc+"&nick="+nick;
   }
 
-  comidas(idc: number){
-    window.location.href= "./comidas-coach?ide="+this.id+"&idc="+idc;
+  comidas(idc: number, nick: string){
+    window.location.href= "./comidas-coach?ide="+this.id+"&idc="+idc+"&nick="+nick;
   }
 
 }

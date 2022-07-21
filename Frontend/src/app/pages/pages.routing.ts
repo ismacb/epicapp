@@ -16,6 +16,8 @@ import { CreateSocialComponent } from './social/create-social/create-social.comp
 import { HomeCoachComponent } from './home-coach/home-coach.component';
 import { EntrenosCoachComponent } from './entrenos-coach/entrenos-coach.component';
 import { ComidasCoachComponent } from './comidas-coach/comidas-coach.component';
+import { NuevoComponent } from './entrenos-coach/nuevo/nuevo.component';
+import { NuevaComponent } from './comidas-coach/nueva/nueva.component';
 
 
 const routes: Routes = [   
@@ -34,8 +36,8 @@ const routes: Routes = [
     { path: 'home-coach', component: HomeCoachComponent},
     { path: 'entrenos-coach', component: EntrenosCoachComponent},
     { path: 'comidas-coach', component: ComidasCoachComponent},
-
-
+    { path: 'nuevo', component: NuevoComponent},
+    { path: 'nueva', component: NuevaComponent},
 ];
 
 @NgModule({

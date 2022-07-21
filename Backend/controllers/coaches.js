@@ -277,6 +277,206 @@ const newCustomer = async(req, res) => {
     }
 };
 
+const trainsCusto = async(req, res) => {
+    try {
+        pool.query("SELECT id, nombre, hecho FROM entrenamiento WHERE id_entrenador = '" + req.query.ide + "' and id_cliente ='" + req.query.idc + "'",
+            async function(error, results) {
+                res.status(200).json(results);
+            });
+
+    } catch (error) {
+        console.log(error);
+        return res.status(400).json({
+            ok: false,
+            msg: "Error en trainsCusto",
+            token: "",
+        });
+    }
+};
+
+const feedsCusto = async(req, res) => {
+    try {
+        pool.query("SELECT id, tipo, hecho FROM comida WHERE id_entrenador = " + req.query.ide + " and id_cliente =" + req.query.idc,
+            async function(error, results) {
+                res.status(200).json(results);
+            });
+
+    } catch (error) {
+        console.log(error);
+        return res.status(400).json({
+            ok: false,
+            msg: "Error en feedsCusto",
+            token: "",
+        });
+    }
+};
+
+const newAlimento = async(req, res) => {
+    try {
+        pool.query("INSERT INTO alimento (nombre, cantidad,hc,proteina, grasa,kcal) values('" + req.body.nombre + "', " +
+            req.body.cantidad + " , " +
+            req.body.hc + " , " +
+            req.body.proteina + " , " +
+            req.body.grasa + " , " +
+            req.body.kcal,
+            async function(error, results) {
+                res.status(200).json(results);
+            });
+
+    } catch (error) {
+        console.log(error);
+        return res.status(400).json({
+            ok: false,
+            msg: "Error en newAlimento",
+            token: "",
+        });
+    }
+};
+
+const newComida = async(req, res) => {
+    try {
+        pool.query("INSERT INTO comida (id_entrenador, id_cliente, tipo, fecha, kcal) values(" + req.body.id_entrenador + ", " +
+            req.body.id_cliente + " , '" +
+            req.body.tipo + "' , '" +
+            req.body.fecha + "' , " +
+            req.body.kcal,
+            async function(error, results) {
+                var ids = req.body.numeros.split("/");
+                for (let i = 0; i < ids.length; i++) {
+                    pool.query("INSERT INTO comidaalimento (id_comida, id_alimento) values(" + results[0].id + ", " + ids[i] + ")",
+                        async function(error, results) {});
+                }
+                res.status(200).json(results);
+            });
+
+    } catch (error) {
+        console.log(error);
+        return res.status(400).json({
+            ok: false,
+            msg: "Error en newEjercicio",
+            token: "",
+        });
+    }
+};
+
+const misAlimentos = async(req, res) => {
+    try {
+        pool.query("SELECT al.* FROM alimento al, comida co, comidaalimento coa WHERE co.id_entrenador = " + req.query.ide + " and co.id = coa.id_comida and coa.id_alimento = al.id",
+            async function(error, results) {
+                res.status(200).json(results);
+            });
+
+    } catch (error) {
+        console.log(error);
+        return res.status(400).json({
+            ok: false,
+            msg: "Error en misAlimentos",
+            token: "",
+        });
+    }
+};
+
+const comida = async(req, res) => {
+    try {
+        pool.query("SELECT co.*, al.* FROM alimento al, comida co, comidaalimento coa WHERE co.id = " + req.query.id + " and co.id = coa.id_comida and coa.id_comida = al.id",
+            async function(error, results) {
+                res.status(200).json(results);
+            });
+
+    } catch (error) {
+        console.log(error);
+        return res.status(400).json({
+            ok: false,
+            msg: "Error en comida",
+            token: "",
+        });
+    }
+};
+
+const newEjercicio = async(req, res) => {
+    try {
+        pool.query("INSERT INTO ejercicio (nombre, descripcion, series, reps, rir, peso) values('" + req.body.nombre + "', '" +
+            req.body.descripcion + "' , " +
+            req.body.series + " , " +
+            req.body.reps + " , " +
+            req.body.rir + " , " +
+            req.body.peso,
+            async function(error, results) {
+                res.status(200).json(results);
+            });
+
+    } catch (error) {
+        console.log(error);
+        return res.status(400).json({
+            ok: false,
+            msg: "Error en newEjercicio",
+            token: "",
+        });
+    }
+};
+
+const newEntreno = async(req, res) => {
+    try {
+        pool.query("INSERT INTO entrenamiento (id_entrenador, id_cliente, nombre, fecha, minutos) values(" + req.body.id_entrenador + ", " +
+            req.body.id_cliente + " , '" +
+            req.body.nombre + "' , '" +
+            req.body.fecha + "' , " +
+            req.body.minutos,
+            async function(error, results) {
+                var ids = req.body.numeros.split("/");
+                for (let i = 0; i < ids.length; i++) {
+                    pool.query("INSERT INTO entrenamientoejercicio (id_entrenamiento, id_ejercicio) values(" + results[0].id + ", " + ids[i] + ")",
+                        async function(error, results) {});
+                }
+                res.status(200).json(results);
+            });
+
+    } catch (error) {
+        console.log(error);
+        return res.status(400).json({
+            ok: false,
+            msg: "Error en newEjercicio",
+            token: "",
+        });
+    }
+};
+
+const misEjercicios = async(req, res) => {
+    try {
+        pool.query("SELECT ej.* FROM ejercicio ej, entrenamiento en, entrenamientoejercicio enej WHERE en.id_entrenador = " + req.query.ide + " and en.id = enej.id_entrenamiento and enej.id_ejercicio = ej.id",
+            async function(error, results) {
+                res.status(200).json(results);
+            });
+
+    } catch (error) {
+        console.log(error);
+        return res.status(400).json({
+            ok: false,
+            msg: "Error en misEjercicios",
+            token: "",
+        });
+    }
+};
+
+const entreno = async(req, res) => {
+    try {
+        pool.query("SELECT en.*, ej.* FROM ejercicio ej, entrenamiento en, entrenamientoejercicio enej WHERE en.id = " + req.query.id + " and en.id = enej.id_entrenamiento and enej.id_ejercicio = ej.id",
+            async function(error, results) {
+                res.status(200).json(results);
+            });
+
+    } catch (error) {
+        console.log(error);
+        return res.status(400).json({
+            ok: false,
+            msg: "Error en entreno",
+            token: "",
+        });
+    }
+};
+
+
+
 
 module.exports = {
     getAllCoaches,
@@ -289,5 +489,15 @@ module.exports = {
     getFeeds,
     getTrainFeed,
     deleteCustomer,
-    newCustomer
+    newCustomer,
+    trainsCusto,
+    feedsCusto,
+    newEjercicio,
+    misEjercicios,
+    entreno,
+    newEntreno,
+    newAlimento,
+    misAlimentos,
+    comida,
+    newComida
 }

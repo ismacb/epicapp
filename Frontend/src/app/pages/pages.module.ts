@@ -12,14 +12,14 @@ import { HomeCoachComponent } from './home-coach/home-coach.component';
 import { EntrenosCoachComponent } from './entrenos-coach/entrenos-coach.component';
 import { ComidasCoachComponent } from './comidas-coach/comidas-coach.component';
 import { NuevoComponent } from './comidas-coach/nuevo/nuevo.component';
+import { NuevaComponent } from './comidas-coach/nueva/nueva.component';
 
 
 
 @NgModule({
   declarations: [  
   
-  
-    EntrenosCoachComponent, ComidasCoachComponent, NuevoComponent
+    NuevaComponent
   ],
   exports: [
   ],

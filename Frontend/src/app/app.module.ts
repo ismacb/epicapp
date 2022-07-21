@@ -20,6 +20,8 @@ import { ComidaComponent } from './pages/comida/comida.component';
 import { CreateSocialComponent } from './pages/social/create-social/create-social.component';
 import { SocialComponent } from './pages/social/social.component';
 import { HomeCoachComponent } from './pages/home-coach/home-coach.component';
+import { EntrenosCoachComponent } from './pages/entrenos-coach/entrenos-coach.component';
+import { ComidasCoachComponent } from './pages/comidas-coach/comidas-coach.component';
 
 
 @NgModule({
@@ -40,7 +42,9 @@ import { HomeCoachComponent } from './pages/home-coach/home-coach.component';
     UserComponent,
     CreateSocialComponent,
     SocialComponent,
-    HomeCoachComponent
+    HomeCoachComponent,
+    EntrenosCoachComponent,
+    ComidasCoachComponent
   ],
   imports: [
     BrowserModule,

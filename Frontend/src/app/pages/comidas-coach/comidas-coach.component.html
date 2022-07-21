@@ -1,1 +1,29 @@
-<p>comidas-coach works!</p>
+<div class="main-container">
+    <div class="row">
+        <div class="col-12">
+            <div style="text-align: center; padding-top: 1em;">
+                <span routerLink="../home-coach" class="material-symbols-outlined" style="font-size: 40px;color: darkgray; position: fixed; left: 40px; top: 45px;">
+                    chevron_left
+                </span>
+                <h1 style="color: #232a68;">Comidas</h1>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="col-12">
+        <div style="text-align: center;">
+            <h2 style="color: #232a68;">{{this.nick}}</h2>
+        </div>
+    </div>
+    <hr style="width: 300px;">
+
+    <div style="text-align: center; padding-top: 20px;">
+        <button (click)="nueva()" role="button" class="button-40 input-submit" style="background-color: darkgray ;">Nuevo comida</button>
+    </div>
+
+    <div class="row" *ngFor="let item of lista">
+        <div style="text-align: center; padding-top: 20px;">
+            <button [ngStyle]="{'background-color': item.hecho? 'green': '#232a68'}" routerLinkActive="router-link-active" class="button-40 input-submit" role="button">{{item.tipo}}</button>
+        </div>
+    </div>
+</div>

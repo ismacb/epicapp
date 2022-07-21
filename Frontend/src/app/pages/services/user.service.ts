@@ -160,6 +160,18 @@ export class UserService {
         tap( (res : any) => {})
       );
     }
+
+    getComidas(ide:number, idc: number){
+      return this.http.put(`${environment.base_url}/coaches/customer/feeds?token=`+this.token+`&ide=`+ide+`&idc=`+idc, this.cabeceras).pipe(
+        tap( (res : any) => {})
+      );
+    }
+
+    getEntrenos(ide:number, idc: number){
+      return this.http.put(`${environment.base_url}/coaches/customer/trains?token=`+this.token+`&ide=`+ide+`&idc=`+idc, this.cabeceras).pipe(
+        tap( (res : any) => {})
+      );
+    }
     
       get rol(): string {
         return this.user.rol;
