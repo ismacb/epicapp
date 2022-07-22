@@ -172,6 +172,20 @@ export class UserService {
         tap( (res : any) => {})
       );
     }
+
+    getEjercicios(ide:number){
+      return this.http.get(`${environment.base_url}/coaches/misEjercicios?token=`+this.token+`&ide=`+ide, this.cabeceras).pipe(
+        tap( (res : any) => {})
+      );
+    }
+
+    newEjercicio(nombre: string, series: number, repes: number, rir: number,ide:number){
+      return this.http.post(`${environment.base_url}/coaches/newExercise?token=`+this.token+`&nombre=`+nombre+`&series=`+series+`&reps=`+repes+`&rir=`+rir+`&ide=`+ide, this.cabeceras).pipe(
+        tap( (res : any) => {})
+      );
+    }
+
+    
     
       get rol(): string {
         return this.user.rol;

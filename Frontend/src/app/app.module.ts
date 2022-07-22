@@ -22,6 +22,8 @@ import { SocialComponent } from './pages/social/social.component';
 import { HomeCoachComponent } from './pages/home-coach/home-coach.component';
 import { EntrenosCoachComponent } from './pages/entrenos-coach/entrenos-coach.component';
 import { ComidasCoachComponent } from './pages/comidas-coach/comidas-coach.component';
+import { NuevoComponent } from './pages/entrenos-coach/nuevo/nuevo.component';
+import { NuevaComponent } from './pages/comidas-coach/nueva/nueva.component';
 
 
 @NgModule({
@@ -44,7 +46,9 @@ import { ComidasCoachComponent } from './pages/comidas-coach/comidas-coach.compo
     SocialComponent,
     HomeCoachComponent,
     EntrenosCoachComponent,
-    ComidasCoachComponent
+    ComidasCoachComponent,
+    NuevoComponent,
+    NuevaComponent
   ],
   imports: [
     BrowserModule,

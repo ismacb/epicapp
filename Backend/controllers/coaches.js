@@ -395,12 +395,10 @@ const comida = async(req, res) => {
 
 const newEjercicio = async(req, res) => {
     try {
-        pool.query("INSERT INTO ejercicio (nombre, descripcion, series, reps, rir, peso) values('" + req.body.nombre + "', '" +
-            req.body.descripcion + "' , " +
-            req.body.series + " , " +
-            req.body.reps + " , " +
-            req.body.rir + " , " +
-            req.body.peso,
+        pool.query("INSERT INTO ejercicio (nombre, series, reps, rir, id_entrena) values ('" + req.query.nombre + "', " +
+            req.query.series + " , " +
+            req.query.reps + " , " +
+            req.query.rir + " , " + req.query.ide + ")",
             async function(error, results) {
                 res.status(200).json(results);
             });
@@ -425,7 +423,7 @@ const newEntreno = async(req, res) => {
             async function(error, results) {
                 var ids = req.body.numeros.split("/");
                 for (let i = 0; i < ids.length; i++) {
-                    pool.query("INSERT INTO entrenamientoejercicio (id_entrenamiento, id_ejercicio) values(" + results[0].id + ", " + ids[i] + ")",
+                    pool.query("INSERT INTO entrenamientoejercicio (id_entrenamiento, id_ejercicio) values(" + results[0].id + ", " + parseInt(ids[i]) + ")",
                         async function(error, results) {});
                 }
                 res.status(200).json(results);
@@ -443,7 +441,7 @@ const newEntreno = async(req, res) => {
 
 const misEjercicios = async(req, res) => {
     try {
-        pool.query("SELECT ej.* FROM ejercicio ej, entrenamiento en, entrenamientoejercicio enej WHERE en.id_entrenador = " + req.query.ide + " and en.id = enej.id_entrenamiento and enej.id_ejercicio = ej.id",
+        pool.query("SELECT ej.* FROM ejercicio ej WHERE ej.id_entrena = " + req.query.ide,
             async function(error, results) {
                 res.status(200).json(results);
             });
