@@ -23,7 +23,8 @@
 
     <div class="row" *ngFor="let item of lista">
         <div style="text-align: center; padding-top: 20px;">
-            <button (click)="edit(item.id)" [ngStyle]="{'background-color': item.hecho? 'green': '#232a68'}" routerLinkActive="router-link-active" class="button-40 input-submit" role="button">{{item.nombre}}</button>
+            <button (click)="edit(item.id)" [ngStyle]="{'background-color': item.hecho? 'green': '#232a68'}" routerLinkActive="router-link-active" class="button-40 input-submit" role="button">{{item.nombre}}                    
+            </button>
         </div>
     </div>
 </div>

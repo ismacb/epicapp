@@ -101,7 +101,6 @@ export class NuevoComponent implements OnInit {
     if(!result.dismiss){
       this.userservice.newEjercicio(this.texto, this.series, this.repes, this.rir, this.ide).subscribe(
         (res) => {
-          debugger;
             Swal.fire(
               'Ejercicio añadido!'
               );
@@ -138,12 +137,47 @@ export class NuevoComponent implements OnInit {
   }
 
   crearEntreno(){
-    // this.entrenoForm.setValue ({
-    //   nombre: this.entrenoForm.get('nombre')?.value? this.entrenoForm.get('nombre')?.value : "",
-    // tiempo: new FormControl(""),
-    // fecha: new FormControl(""),
-    // ejers: new FormControl(""),
-    // });
+    var ayuda=this.entrenoForm.get('nombre')?.value;
+    var ayuda1=this.entrenoForm.get('tiempo')?.value;
+    var ayuda2=this.entrenoForm.get('fecha')?.value;
+    var ejer = "";
+    debugger;
+    for (let k=0; k<this.ejesid.length; k++){
+      if(k==this.ejesid.length-1){
+        ejer+=this.ejesid[k];
+      }
+      else{
+        ejer+=this.ejesid[k]+"/";
+      }
+
+    }
+
+    this.entrenoForm.setValue ({
+      nombre: ayuda? ayuda : "",
+      tiempo: ayuda1? ayuda1 : "",
+      fecha: ayuda2? ayuda2 : "",
+      ejers: ejer,
+    });
+
+    this.userservice.newEntreno(this.ide, this.idc,this.entrenoForm.value).subscribe(
+      (res) => {
+        debugger;
+        Swal.fire(
+          'Entrenamiento añadido!'
+          );
+        window.location.href="./entrenos-coach?ide="+this.ide+"&idc="+this.idc+"&nick="+this.nick;    
+    },
+    (err) => {
+      console.warn("Error respuesta api:", err);
+    }
+    );
+
+
+  }
+
+  atras(){
+    window.location.href="./entrenos-coach?ide="+this.ide+"&idc="+this.idc+"&nick="+this.nick;    
+
   }
 
 

@@ -18,6 +18,8 @@ div {
 }
 
 .col {
+    color: darkgray;
+    font-size: 26px;
     display: inline-flex;
     justify-content: space-around;
     padding: 15px;
@@ -32,12 +34,14 @@ div {
     background-color: #232a68;
 }
 
-span {
+
+/* span {
     color: darkgray;
     font-size: 26px;
-}
+} */
 
-.col:hover {
+
+/* .col:hover {
     background-color: darkgray;
     color: #232a68;
 }
@@ -58,4 +62,4 @@ span {
 
 .col:focus span {
     color: #232a68;
-}
+} */

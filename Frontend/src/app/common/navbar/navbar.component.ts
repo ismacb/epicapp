@@ -13,9 +13,29 @@ export class NavbarComponent implements OnInit {
   public token = sessionStorage.getItem('x-token');
   public rol = sessionStorage.getItem('rol');
   public pag = "";
+  public menu: any;
 
   ngOnInit(): void {
+    this.menu = ["home", "group", "sms", "monitoring", "perfil"];
     this.pag = window.location.href.split("/")[3];
+  }
+  
+  clicka(donde: string){
+    debugger;
+
+    for(let k=0;k< this.menu.length; k++){
+      if(this.menu[k]==donde){
+        (document.getElementById(this.menu[k]) as HTMLBodyElement).style.backgroundColor = "darkgray"; 
+        (document.getElementById(this.menu[k]) as HTMLBodyElement).style.color = "#232a68" ; 
+      }
+      else{
+        (document.getElementById(this.menu[k]) as HTMLBodyElement).style.backgroundColor = "#232a68"; 
+        (document.getElementById(this.menu[k]) as HTMLBodyElement).style.color = "darkgray" ; 
+      }
+
+    }
+    
+
   }
 
 }

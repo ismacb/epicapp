@@ -32,7 +32,8 @@ export class EntrenosCoachComponent implements OnInit {
           const hola = {
             id: res[i].id,
             nombre: res[i].nombre,
-            hecho: res[i].hecho
+            hecho: res[i].hecho,
+            obscliente: res[i].obscliente
           }
           this.lista.push(hola); 
         }

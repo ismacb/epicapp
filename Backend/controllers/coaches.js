@@ -415,15 +415,15 @@ const newEjercicio = async(req, res) => {
 
 const newEntreno = async(req, res) => {
     try {
-        pool.query("INSERT INTO entrenamiento (id_entrenador, id_cliente, nombre, fecha, minutos) values(" + req.body.id_entrenador + ", " +
-            req.body.id_cliente + " , '" +
+        pool.query("INSERT INTO entrenamiento (id_entrenador, id_cliente, nombre, fecha, minutos) values(" + req.query.ide + ", " +
+            req.query.idc + " , '" +
             req.body.nombre + "' , '" +
             req.body.fecha + "' , " +
-            req.body.minutos,
+            req.body.tiempo + ")",
             async function(error, results) {
-                var ids = req.body.numeros.split("/");
+                var ids = req.body.ejers.split("/");
                 for (let i = 0; i < ids.length; i++) {
-                    pool.query("INSERT INTO entrenamientoejercicio (id_entrenamiento, id_ejercicio) values(" + results[0].id + ", " + parseInt(ids[i]) + ")",
+                    pool.query("INSERT INTO entrenamientoejercicio (id_entrenamiento, id_ejercicio) values(" + results.insertId + ", " + parseInt(ids[i]) + ")",
                         async function(error, results) {});
                 }
                 res.status(200).json(results);

@@ -1,18 +1,18 @@
 <div class="main-container" id="nav" *ngIf="this.token != null && this.rol=='CLIENTE'">
     <div class="row">
-        <div class="col" id="home" routerLink="./home-client">
+        <div class="col" (click)="clicka('home')" id="home" routerLink="./home-client" [ngStyle]="{'background-color': (this.pag.includes('home')) ? 'darkgray' : '#232a68', 'color': (!this.pag.includes('home')) ? 'darkgray' : '#232a68'}">
             <span class="material-symbols-outlined" id="homes">home</span>
         </div>
-        <div class="col" routerLink="./social">
+        <div class="col" routerLink="./social" (click)="clicka('group')" id="group">
             <span class="material-symbols-outlined">group</span>
         </div>
-        <div class="col" [routerLink]="['/chat']">
+        <div class="col" [routerLink]="['/chat']" (click)="clicka('sms')" id="sms">
             <span class="material-symbols-outlined">sms</span>
         </div>
-        <div class="col" [routerLink]="['/estadisticas']">
+        <div class="col" [routerLink]="['/estadisticas']" (click)="clicka('monitoring')" id="monitoring">
             <span class="material-symbols-outlined">monitoring</span>
         </div>
-        <div class="col" [routerLink]="['/perfil']">
+        <div class="col" [routerLink]="['/perfil']" (click)="clicka('perfil')" id="perfil">
             <span class="material-symbols-outlined">account_circle</span>
         </div>
     </div>

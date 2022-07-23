@@ -105,7 +105,7 @@ export class HomeClientComponent implements OnInit {
 
   menosmes(){
     this.mesnum--;
-    this.mes= this.meses[this.mesnum+1]; 
+    this.mes= this.meses[this.mesnum-1]; 
     this.montardia();
     this.entrenos(this.fechahoy);
   }

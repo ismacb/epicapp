@@ -185,6 +185,11 @@ export class UserService {
       );
     }
 
+    newEntreno(ide: number, idc: number, formdata: any){
+      return this.http.post(`${environment.base_url}/coaches/newEntreno?token=`+this.token+`&ide=`+ide+`&idc=`+idc, formdata, this.cabeceras).pipe(
+        tap( (res : any) => {})
+      );
+    }
     
     
       get rol(): string {
