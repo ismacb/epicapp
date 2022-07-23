@@ -20,7 +20,8 @@ const {
     newAlimento,
     misAlimentos,
     comida,
-    newComida
+    newComida,
+    updateEntreno
 } = require("../controllers/coaches");
 
 const router = Router();
@@ -45,5 +46,6 @@ router.post("/newAlimento", validarJWT, newAlimento);
 router.get("/misAlimento", validarJWT, misAlimentos);
 router.get("/comida", validarJWT, comida);
 router.post("/newComida", validarJWT, newComida);
+router.post("/updateEntreno", validarJWT, updateEntreno);
 
 module.exports = router;

@@ -21,8 +21,6 @@ export class NavbarComponent implements OnInit {
   }
   
   clicka(donde: string){
-    debugger;
-
     for(let k=0;k< this.menu.length; k++){
       if(this.menu[k]==donde){
         (document.getElementById(this.menu[k]) as HTMLBodyElement).style.backgroundColor = "darkgray"; 

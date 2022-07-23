@@ -1,15 +1,15 @@
 <div class="main-container" id="nav" *ngIf="this.token != null && this.rol=='CLIENTE'">
     <div class="row">
-        <div class="col" (click)="clicka('home')" id="home" routerLink="./home-client" [ngStyle]="{'background-color': (this.pag.includes('home')) ? 'darkgray' : '#232a68', 'color': (!this.pag.includes('home')) ? 'darkgray' : '#232a68'}">
+        <div class="col" (click)="clicka('home')" id="home" routerLink="./home-client" [ngStyle]="{'background-color': ((this.pag.includes('home')) || (this.pag.includes('entreno')) || (this.pag.includes('comida'))) ? 'darkgray' : '#232a68', 'color': (!this.pag.includes('home') && (!this.pag.includes('entreno')) && (!this.pag.includes('comida'))) ? 'darkgray' : '#232a68'}">
             <span class="material-symbols-outlined" id="homes">home</span>
         </div>
         <div class="col" routerLink="./social" (click)="clicka('group')" id="group">
             <span class="material-symbols-outlined">group</span>
         </div>
-        <div class="col" [routerLink]="['/chat']" (click)="clicka('sms')" id="sms">
+        <div class="col" [routerLink]="['/chat']" (click)="clicka('sms')" id="sms" [ngStyle]="{'background-color': ((this.pag.includes('chat')) || (this.pag.includes('conver'))) ? 'darkgray' : '#232a68', 'color': ((!this.pag.includes('chat')) && (!this.pag.includes('conver'))) ? 'darkgray' : '#232a68'}">
             <span class="material-symbols-outlined">sms</span>
         </div>
-        <div class="col" [routerLink]="['/estadisticas']" (click)="clicka('monitoring')" id="monitoring">
+        <div class="col" [routerLink]="['/estadisticas']" (click)="clicka('monitoring')" id="monitoring" [ngStyle]="{'background-color': (this.pag.includes('estadisticas')) ? 'darkgray' : '#232a68', 'color': (!this.pag.includes('estadisticas')) ? 'darkgray' : '#232a68'}">
             <span class="material-symbols-outlined">monitoring</span>
         </div>
         <div class="col" [routerLink]="['/perfil']" (click)="clicka('perfil')" id="perfil">

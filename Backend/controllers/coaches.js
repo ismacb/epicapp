@@ -279,7 +279,7 @@ const newCustomer = async(req, res) => {
 
 const trainsCusto = async(req, res) => {
     try {
-        pool.query("SELECT id, nombre, hecho FROM entrenamiento WHERE id_entrenador = '" + req.query.ide + "' and id_cliente ='" + req.query.idc + "'",
+        pool.query("SELECT id, nombre, hecho, fecha FROM entrenamiento WHERE id_entrenador = '" + req.query.ide + "' and id_cliente ='" + req.query.idc + "' ORDER BY fecha desc",
             async function(error, results) {
                 res.status(200).json(results);
             });
@@ -458,7 +458,7 @@ const misEjercicios = async(req, res) => {
 
 const entreno = async(req, res) => {
     try {
-        pool.query("SELECT en.*, ej.* FROM ejercicio ej, entrenamiento en, entrenamientoejercicio enej WHERE en.id = " + req.query.id + " and en.id = enej.id_entrenamiento and enej.id_ejercicio = ej.id",
+        pool.query("SELECT en.*, ej.*, ej.nombre as nomeje , en.nombre as nomen, en.rir as erir FROM ejercicio ej, entrenamiento en, entrenamientoejercicio enej WHERE en.id = " + req.query.idt + " and en.id = enej.id_entrenamiento and enej.id_ejercicio = ej.id",
             async function(error, results) {
                 res.status(200).json(results);
             });
@@ -468,6 +468,30 @@ const entreno = async(req, res) => {
         return res.status(400).json({
             ok: false,
             msg: "Error en entreno",
+            token: "",
+        });
+    }
+};
+
+const updateEntreno = async(req, res) => {
+    try {
+        pool.query("UPDATE entrenamiento SET nombre = '" + req.body.nombre + "', fecha = '" + req.body.fecha + "', minutos = " + req.body.tiempo + " where id = " + req.query.idt,
+            async function(error, results) {
+                pool.query("delete from entrenamientoejercicio where id_entrenamiento= " + req.query.idt,
+                    async function(error, results) {
+                        var ids = req.body.ejers.split("/");
+                        for (let i = 0; i < ids.length; i++) {
+                            pool.query("INSERT INTO entrenamientoejercicio (id_entrenamiento, id_ejercicio) values(" + req.query.idt + ", " + parseInt(ids[i]) + ")",
+                                async function(error, results) {});
+                        }
+                    });
+                res.status(200).json(results);
+            });
+    } catch (error) {
+        console.log(error);
+        return res.status(400).json({
+            ok: false,
+            msg: "Error en newEjercicio",
             token: "",
         });
     }
@@ -497,5 +521,6 @@ module.exports = {
     newAlimento,
     misAlimentos,
     comida,
-    newComida
+    newComida,
+    updateEntreno
 }

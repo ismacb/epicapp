@@ -37,7 +37,8 @@ export class EstadisticasComponent implements OnInit {
   });
 
   ngOnInit(): void {
-    if (window.location.href.split("=").length>0){
+    debugger;
+    if (window.location.href.split("=").length>1){
       this.id= parseInt(window.location.href.split("=")[1]);
       this.viene = "en";
     }
@@ -49,7 +50,6 @@ export class EstadisticasComponent implements OnInit {
   }
 
   getDatos(){
-    debugger;
     this.userservice.getDatos(this.id).subscribe(
       (res) => {
         var ult= res[res.length-1];

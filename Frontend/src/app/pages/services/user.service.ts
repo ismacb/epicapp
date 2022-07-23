@@ -190,6 +190,24 @@ export class UserService {
         tap( (res : any) => {})
       );
     }
+
+    updateEntreno(idt: number,formdata: any){
+      return this.http.post(`${environment.base_url}/coaches/updateEntreno?token=`+this.token+`&idt=`+idt, formdata, this.cabeceras).pipe(
+        tap( (res : any) => {})
+      );
+    }
+
+    getEntreno(idt: number){
+      return this.http.get(`${environment.base_url}/coaches/entreno?token=`+this.token+`&idt=`+idt,this.cabeceras).pipe(
+        tap( (res : any) => {})
+      );
+    }
+
+    deleteTrain(idt: number){
+      return this.http.delete(`${environment.base_url}/trainings/delete?token=`+this.token+`&idt=`+idt,this.cabeceras).pipe(
+        tap( (res : any) => {})
+      );
+    }
     
     
       get rol(): string {

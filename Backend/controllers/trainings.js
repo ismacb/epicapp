@@ -106,7 +106,7 @@ const editTrain = async(req, res) => {
 //Elimina un entrenamiento
 const deleteTrain = async(req, res) => {
     try {
-        pool.query("DELETE FROM entrenamiento WHERE id =" + req.body.id,
+        pool.query("DELETE FROM entrenamiento WHERE id =" + req.query.idt,
             async function(error, results) {
                 if (error)
                     throw error;

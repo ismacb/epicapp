@@ -32,6 +32,13 @@ export class NuevoComponent implements OnInit {
   public rir: number =0;
   public eja: Array<any> = [];
   public ejesid: Array<any> = [];
+  public tipo = "";
+  public eNombre = "";
+  public eFecha = "";
+  public eTiempo = 0;
+  public eObs = "";
+  public erir = 0;
+
 
 
   ngOnInit(): void {
@@ -40,6 +47,11 @@ export class NuevoComponent implements OnInit {
     this.nick = window.location.href.split("=")[3].split("&")[0];
     this.idt = parseInt(window.location.href.split("=")[4]?.split("&")[0])? parseInt(window.location.href.split("=")[4]?.split("&")[0]): 0;
     this.getEjercicios();
+    this.tipo="nuevo";
+    if(this.idt!=0){
+      this.tipo="modi";
+      this.edit();
+    }
   }
 
   getEjercicios(){
@@ -115,7 +127,6 @@ export class NuevoComponent implements OnInit {
   }
 
   mete(){
-    debugger;
     const datos = (document.getElementById('ejericio') as HTMLInputElement).value;
     (document.getElementById('ejericio') as HTMLInputElement).value = "";
 
@@ -141,7 +152,6 @@ export class NuevoComponent implements OnInit {
     var ayuda1=this.entrenoForm.get('tiempo')?.value;
     var ayuda2=this.entrenoForm.get('fecha')?.value;
     var ejer = "";
-    debugger;
     for (let k=0; k<this.ejesid.length; k++){
       if(k==this.ejesid.length-1){
         ejer+=this.ejesid[k];
@@ -149,7 +159,6 @@ export class NuevoComponent implements OnInit {
       else{
         ejer+=this.ejesid[k]+"/";
       }
-
     }
 
     this.entrenoForm.setValue ({
@@ -159,25 +168,71 @@ export class NuevoComponent implements OnInit {
       ejers: ejer,
     });
 
-    this.userservice.newEntreno(this.ide, this.idc,this.entrenoForm.value).subscribe(
-      (res) => {
-        debugger;
-        Swal.fire(
-          'Entrenamiento añadido!'
-          );
-        window.location.href="./entrenos-coach?ide="+this.ide+"&idc="+this.idc+"&nick="+this.nick;    
-    },
-    (err) => {
-      console.warn("Error respuesta api:", err);
+    if(this.idt==0){
+      this.userservice.newEntreno(this.ide, this.idc,this.entrenoForm.value).subscribe(
+        (res) => {
+          Swal.fire(
+            'Entrenamiento añadido!'
+            );
+          window.location.href="./entrenos-coach?ide="+this.ide+"&idc="+this.idc+"&nick="+this.nick;    
+      },
+      (err) => {
+        console.warn("Error respuesta api:", err);
+      }
+      );
     }
-    );
+    else{
+      this.userservice.updateEntreno(this.idt,this.entrenoForm.value).subscribe(
+        (res) => {
+          debugger;
+          Swal.fire(
+            'Entrenamiento modificado!'
+            );
+          window.location.href="./entrenos-coach?ide="+this.ide+"&idc="+this.idc+"&nick="+this.nick;    
+      },
+      (err) => {
+        console.warn("Error respuesta api:", err);
+      }
+      );
+    }
+
 
 
   }
 
   atras(){
-    window.location.href="./entrenos-coach?ide="+this.ide+"&idc="+this.idc+"&nick="+this.nick;    
+    window.location.href="./entrenos-coach?ide="+this.ide+"&idc="+this.idc+"&nick="+this.nick;
+  }
 
+  edit(){
+    this.userservice.getEntreno(this.idt).subscribe(
+      (res) => {
+        if(res.length >0){
+          this.eNombre = res[0].nomen;
+          this.eTiempo = res[0].minutos;
+          this.eFecha = res[0].fecha.split("T")[0].split("-")[0]+"-"+res[0].fecha.split("T")[0].split("-")[1]+"-"+res[0].fecha.split("T")[0].split("-")[2];
+          this.eObs = res[0].obscliente;
+          debugger;
+          this.erir = res[0].erir? res[0].erir: 0 ;
+
+          this.eja = [];
+          for(let i=0;i<res.length;i++){
+            const hola = {
+              nombre: res[i].nomeje,
+              series: res[i].series,
+              reps: res[i].reps,
+              rir: res[i].rir,
+              id: res[i].id
+            }
+            this.eja.push(hola);
+          }
+        }
+        
+      },
+      (err) => {
+        console.warn("Error respuesta api:", err);
+      }
+    );
   }
 
 

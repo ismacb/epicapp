@@ -5,7 +5,8 @@
                 <span (click)="atras()" class="material-symbols-outlined" style="font-size: 40px;color: darkgray; position: fixed; left: 38px; top: 45px;">
                     chevron_left
                 </span>
-                <h1 style="color: #232a68;">Nuevo entreno</h1>
+                <h1 style="color: #232a68;" *ngIf="this.tipo=='nuevo'">Nuevo entreno</h1>
+                <h1 style="color: #232a68;" *ngIf="this.tipo=='modi'">Ver entreno</h1>
             </div>
         </div>
     </div>
@@ -21,7 +22,7 @@
             <div class="col-12">
                 <div>
                     <!-- <label for="nombre">Nombre: &nbsp;<input type="text" name="nombre" id="nombre" style="width: 166px;" value="{{this.nombre}}" formControlName="nombre"> -->
-                    <label for="nombre">Nombre: &nbsp;<input type="text" name="nombre" id="nombre" style="width: 166px; " formControlName="nombre">
+                    <label for="nombre">Nombre: &nbsp;<input type="text" name="nombre" id="nombre" style="width: 166px;" value="{{this.eNombre}}" formControlName="nombre">
                 </label>
                 </div>
             </div>
@@ -30,7 +31,7 @@
             <div class="col-12">
                 <div style="padding-top: 20px;">
                     <!-- <label for="apellidos">Tiempo: &nbsp;<input type="text" name="apellidos" id="apellidos" value="{{this.apellidos}}" formControlName="apellidos"> -->
-                    <label for="tiempo">Tiempo: &nbsp;<input type="number" name="tiempo" id="tiempo" formControlName="tiempo">
+                    <label for="tiempo">Tiempo: &nbsp;<input type="number" name="tiempo" id="tiempo" formControlName="tiempo"  value="{{this.eTiempo}}" style="width:120px;"> mins
                 </label>
                 </div>
             </div>
@@ -38,8 +39,25 @@
         <div class="row">
             <div class="col-12">
                 <div style="padding-top: 20px;">
-                    <label for="fecha">Fecha: &nbsp;<input type="date" name="fecha" id="fecha" style="width: 191px;" formControlName="fecha" >
+                    <label for="fecha">Fecha: &nbsp;<input type="date" name="fecha" id="fecha" style="width: 191px;" formControlName="fecha" value="{{this.eFecha}}" >
                         <!-- <label for="edad">Fecha: &nbsp;<input type="date" name="edad" id="edad" style="width: 191px;" value="{{this.edad}}" formControlName="edad"> -->
+                </label>
+                </div>
+            </div>
+        </div>
+        <div class="row" *ngIf="this.eObs!=null">
+            <div class="col-12">
+                <div style="padding-top: 20px;">
+                    <label for="fecha">Observaciones: &nbsp;<input type="text" name="obs" id="obs" style="width: 140px;" value="{{this.eObs}}" disabled >
+                </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" *ngIf="this.erir!=0">
+            <div class="col-12">
+                <div style="padding-top: 20px;">
+                    <label for="fecha">RIR: &nbsp;<input type="text" name="rir" id="rir" style="width: 100px;" value="{{this.erir}}" disabled >
                 </label>
                 </div>
             </div>
