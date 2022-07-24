@@ -126,7 +126,7 @@ const hechofeed = async(req, res) => {
 //Elimina una comida
 const deleteFeed = async(req, res) => {
     try {
-        pool.query("DELETE FROM comida WHERE id =" + req.body.id,
+        pool.query("DELETE FROM comida WHERE id =" + req.query.idt,
             async function(error, results) {
                 if (error)
                     throw error;

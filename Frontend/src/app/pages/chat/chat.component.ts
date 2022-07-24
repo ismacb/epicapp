@@ -30,9 +30,16 @@ export class ChatComponent implements OnInit {
       (res) => {
         this.id = [];
         for(let p=0;p < res.length;p++){
+          let as= 0;
+          if(res[p].id_emisor == ids){
+            as= res[p].id_receptor;
+          }
+          else{
+            as= res[p].id_emisor
+          }
           const hola = {
             nick : res[p].nick,
-            id : res[p].id_receptor
+            id : as
           }
           this.id.push(hola);
         }
@@ -107,7 +114,6 @@ export class ChatComponent implements OnInit {
             this.getContacts();
           },
           (err) => {
-            debugger;
             Swal.fire(
               'Este nick no existe'
             );

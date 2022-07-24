@@ -296,7 +296,7 @@ const trainsCusto = async(req, res) => {
 
 const feedsCusto = async(req, res) => {
     try {
-        pool.query("SELECT id, tipo, hecho FROM comida WHERE id_entrenador = " + req.query.ide + " and id_cliente =" + req.query.idc,
+        pool.query("SELECT id, tipo, hecho, fecha, obscliente FROM comida WHERE id_entrenador = " + req.query.ide + " and id_cliente =" + req.query.idc + " ORDER BY fecha desc",
             async function(error, results) {
                 res.status(200).json(results);
             });
@@ -313,12 +313,13 @@ const feedsCusto = async(req, res) => {
 
 const newAlimento = async(req, res) => {
     try {
-        pool.query("INSERT INTO alimento (nombre, cantidad,hc,proteina, grasa,kcal) values('" + req.body.nombre + "', " +
-            req.body.cantidad + " , " +
-            req.body.hc + " , " +
-            req.body.proteina + " , " +
-            req.body.grasa + " , " +
-            req.body.kcal,
+        pool.query("INSERT INTO alimento (nombre, cantidad, hc,proteina, grasa,kcal, id_entrena) values('" + req.query.nombre + "', " +
+            req.query.cantidad + " , " +
+            req.query.hc + " , " +
+            req.query.pro + " , " +
+            req.query.grasas + " , " +
+            req.query.kcal + " , " +
+            req.query.ide + ")",
             async function(error, results) {
                 res.status(200).json(results);
             });
@@ -335,15 +336,15 @@ const newAlimento = async(req, res) => {
 
 const newComida = async(req, res) => {
     try {
-        pool.query("INSERT INTO comida (id_entrenador, id_cliente, tipo, fecha, kcal) values(" + req.body.id_entrenador + ", " +
-            req.body.id_cliente + " , '" +
+        pool.query("INSERT INTO comida (id_entrenador, id_cliente, tipo, fecha, totalkcal) values(" + req.query.ide + ", " +
+            req.query.idc + " , '" +
             req.body.tipo + "' , '" +
             req.body.fecha + "' , " +
-            req.body.kcal,
+            req.body.kcal + ")",
             async function(error, results) {
-                var ids = req.body.numeros.split("/");
+                var ids = req.body.alim.split("/");
                 for (let i = 0; i < ids.length; i++) {
-                    pool.query("INSERT INTO comidaalimento (id_comida, id_alimento) values(" + results[0].id + ", " + ids[i] + ")",
+                    pool.query("INSERT INTO comidaalimento (id_comida, id_alimento) values(" + results.insertId + ", " + ids[i] + ")",
                         async function(error, results) {});
                 }
                 res.status(200).json(results);
@@ -361,7 +362,7 @@ const newComida = async(req, res) => {
 
 const misAlimentos = async(req, res) => {
     try {
-        pool.query("SELECT al.* FROM alimento al, comida co, comidaalimento coa WHERE co.id_entrenador = " + req.query.ide + " and co.id = coa.id_comida and coa.id_alimento = al.id",
+        pool.query("SELECT al.* FROM alimento al WHERE al.id_entrena = " + req.query.ide,
             async function(error, results) {
                 res.status(200).json(results);
             });
@@ -378,7 +379,7 @@ const misAlimentos = async(req, res) => {
 
 const comida = async(req, res) => {
     try {
-        pool.query("SELECT co.*, al.* FROM alimento al, comida co, comidaalimento coa WHERE co.id = " + req.query.id + " and co.id = coa.id_comida and coa.id_comida = al.id",
+        pool.query("SELECT co.*, al.* FROM alimento al, comida co, comidaalimento coa WHERE co.id = " + req.query.idt + " and co.id = coa.id_comida and coa.id_comida = al.id",
             async function(error, results) {
                 res.status(200).json(results);
             });
@@ -491,12 +492,35 @@ const updateEntreno = async(req, res) => {
         console.log(error);
         return res.status(400).json({
             ok: false,
-            msg: "Error en newEjercicio",
+            msg: "Error en updateEjercicio",
             token: "",
         });
     }
 };
 
+const updateComida = async(req, res) => {
+    try {
+        pool.query("UPDATE comida SET tipo = '" + req.body.tipo + "', fecha = '" + req.body.fecha + "', kcal = " + req.body.kcal + " where id = " + req.query.idt,
+            async function(error, results) {
+                pool.query("delete from comidaalimento where id_comida= " + req.query.idt,
+                    async function(error, results) {
+                        var ids = req.body.ejers.split("/");
+                        for (let i = 0; i < ids.length; i++) {
+                            pool.query("INSERT INTO comidaalimento (id_comida, id_alimento) values(" + req.query.idt + ", " + parseInt(ids[i]) + ")",
+                                async function(error, results) {});
+                        }
+                    });
+                res.status(200).json(results);
+            });
+    } catch (error) {
+        console.log(error);
+        return res.status(400).json({
+            ok: false,
+            msg: "Error en updateComida",
+            token: "",
+        });
+    }
+};
 
 
 
@@ -522,5 +546,6 @@ module.exports = {
     misAlimentos,
     comida,
     newComida,
-    updateEntreno
+    updateEntreno,
+    updateComida
 }

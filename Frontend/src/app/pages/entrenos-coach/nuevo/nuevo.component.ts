@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import Swal from 'sweetalert2';
-import { filter } from 'rxjs';
 import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
@@ -184,7 +183,6 @@ export class NuevoComponent implements OnInit {
     else{
       this.userservice.updateEntreno(this.idt,this.entrenoForm.value).subscribe(
         (res) => {
-          debugger;
           Swal.fire(
             'Entrenamiento modificado!'
             );
@@ -212,7 +210,6 @@ export class NuevoComponent implements OnInit {
           this.eTiempo = res[0].minutos;
           this.eFecha = res[0].fecha.split("T")[0].split("-")[0]+"-"+res[0].fecha.split("T")[0].split("-")[1]+"-"+res[0].fecha.split("T")[0].split("-")[2];
           this.eObs = res[0].obscliente;
-          debugger;
           this.erir = res[0].erir? res[0].erir: 0 ;
 
           this.eja = [];

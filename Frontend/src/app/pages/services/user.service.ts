@@ -179,8 +179,20 @@ export class UserService {
       );
     }
 
+    getAlimentos(ide:number){
+      return this.http.get(`${environment.base_url}/coaches/misAlimentos?token=`+this.token+`&ide=`+ide, this.cabeceras).pipe(
+        tap( (res : any) => {})
+      );
+    }
+
     newEjercicio(nombre: string, series: number, repes: number, rir: number,ide:number){
       return this.http.post(`${environment.base_url}/coaches/newExercise?token=`+this.token+`&nombre=`+nombre+`&series=`+series+`&reps=`+repes+`&rir=`+rir+`&ide=`+ide, this.cabeceras).pipe(
+        tap( (res : any) => {})
+      );
+    }
+
+    newAlimento(nombre: string, kcal: number, cantidad: number, hc: number, pro: number, grasas: number,ide:number){
+      return this.http.post(`${environment.base_url}/coaches/newAlimento?token=`+this.token+`&nombre=`+nombre+`&kcal=`+kcal+`&cantidad=`+cantidad+`&hc=`+hc+`&pro=`+pro+`&grasas=`+grasas+`&ide=`+ide, this.cabeceras).pipe(
         tap( (res : any) => {})
       );
     }
@@ -197,8 +209,27 @@ export class UserService {
       );
     }
 
+    newComida(ide: number, idc: number, formdata: any){
+      console.log(`${environment.base_url}/coaches/newComida?token=`+this.token+`&ide=`+ide+`&idc=`+idc);
+      return this.http.post(`${environment.base_url}/coaches/newComida?token=`+this.token+`&ide=`+ide+`&idc=`+idc, formdata, this.cabeceras).pipe(
+        tap( (res : any) => {})
+      );
+    }
+
+    updateComida(idt: number,formdata: any){
+      return this.http.post(`${environment.base_url}/coaches/updateComida?token=`+this.token+`&idt=`+idt, formdata, this.cabeceras).pipe(
+        tap( (res : any) => {})
+      );
+    }
+
     getEntreno(idt: number){
       return this.http.get(`${environment.base_url}/coaches/entreno?token=`+this.token+`&idt=`+idt,this.cabeceras).pipe(
+        tap( (res : any) => {})
+      );
+    }
+
+    getComida(idt: number){
+      return this.http.get(`${environment.base_url}/coaches/comida?token=`+this.token+`&idt=`+idt,this.cabeceras).pipe(
         tap( (res : any) => {})
       );
     }
@@ -209,6 +240,11 @@ export class UserService {
       );
     }
     
+    deleteFeed(idt: number){
+      return this.http.delete(`${environment.base_url}/feedings/delete?token=`+this.token+`&idt=`+idt,this.cabeceras).pipe(
+        tap( (res : any) => {})
+      );
+    }
     
       get rol(): string {
         return this.user.rol;

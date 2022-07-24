@@ -8,18 +8,11 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { NgChartsModule } from 'ng2-charts';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { CommonModule } from '@angular/common';
-import { HomeCoachComponent } from './home-coach/home-coach.component';
-import { EntrenosCoachComponent } from './entrenos-coach/entrenos-coach.component';
-import { ComidasCoachComponent } from './comidas-coach/comidas-coach.component';
-import { NuevoComponent } from './comidas-coach/nuevo/nuevo.component';
-import { NuevaComponent } from './comidas-coach/nueva/nueva.component';
-
 
 
 @NgModule({
   declarations: [  
   
-    NuevaComponent
   ],
   exports: [
   ],

@@ -311,7 +311,8 @@ const putMetricas = async(req, res) => {
 
 const getContactos = async(req, res) => {
     try {
-        pool.query("SELECT DISTINCT(usu.nick), id_receptor FROM chat ch, usuario usu WHERE (id_emisor =" + req.query.id + " or id_receptor=" + req.query.id + ") and ch.id_receptor = usu.id and usu.id <>" + req.query.id,
+        //pool.query("SELECT DISTINCT(usu.nick), id_receptor FROM chat ch, usuario usu WHERE (id_emisor =" + req.query.id + " or id_receptor=" + req.query.id + ") and ch.id_receptor = usu.id and usu.id <>" + req.query.id,
+        pool.query("SELECT DISTINCT(usu.nick), id_emisor ,id_receptor FROM chat ch, usuario usu WHERE id_receptor =" + req.query.id + " and ch.id_emisor = usu.id and usu.id <> " + req.query.id,
             async function(error, results) {
                 if (error)
                     throw error;

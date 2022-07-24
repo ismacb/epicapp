@@ -3,7 +3,7 @@ let pool = require('../database/configdb.js');
 //Devuelve todos los posts
 const getAllPosts = async(req, res) => {
     try {
-        pool.query("SELECT post.id as idp, post.*, usuario.nick  FROM post, usuario WHERE usuario.id = id_usuario",
+        pool.query("SELECT post.id as idp, post.*, usuario.nick  FROM post, usuario WHERE usuario.id = id_usuario ORDER BY id desc",
             async function(error, results) {
                 if (error)
                     throw error;

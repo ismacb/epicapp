@@ -40,8 +40,10 @@ export class ConverComponent implements OnInit {
       ids= parseInt(sessionStorage.getItem('id') || "0");
       this.ide = ids;
     }
+    
     this.userservice.getMensajes(ids,  this.idr).subscribe(
       (res) => {
+        debugger;
         this.todo = [];
         for(let p=0; p<res.length;p++){
           var tipo = "receptor";

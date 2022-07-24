@@ -55,7 +55,6 @@ export class ComidaComponent implements OnInit {
   }).then((result) => {
       this.userservice.comidafin(this.comida).subscribe(
         (res) => {
-          debugger;
             Swal.fire(
               'Feedback reportado!'
               );

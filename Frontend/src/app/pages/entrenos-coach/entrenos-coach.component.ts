@@ -29,7 +29,6 @@ export class EntrenosCoachComponent implements OnInit {
     this.userservice.getEntrenos(this.ide, this.idc).subscribe(
       (res) => {
         this.lista=[];
-        debugger;
         for(let i=0;i<res.length;i++){
           const hola = {
             id: res[i].id,

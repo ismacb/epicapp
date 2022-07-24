@@ -1,1 +1,127 @@
-<p>nueva works!</p>
+<div class="main-container">
+    <div class="row">
+        <div class="col-12">
+            <div style="text-align: center; padding-top: 1em;">
+                <span (click)="atras()" class="material-symbols-outlined" style="font-size: 40px;color: darkgray; position: fixed; left: 38px; top: 45px;">
+                    chevron_left
+                </span>
+                <h1 style="color: #232a68;" *ngIf="this.tipo=='nuevo'">Nueva comida</h1>
+                <h1 style="color: #232a68;" *ngIf="this.tipo=='modi'">Ver comida</h1>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="col-12">
+        <div style="text-align: center;">
+            <h2 style="color: #232a68;">{{this.nick}}</h2>
+        </div>
+    </div>
+    <hr style="width: 300px;">
+    <form class="form" id="registrarComida" [formGroup]="comidaForm">
+        <div class="row">
+            <div class="col-12">
+                <div>
+                    <label for="nombre">Tipo: &nbsp;<input type="text" name="tipo" id="tipo" style="width: 166px;" value="{{this.etipo}}" formControlName="tipo">
+                </label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div style="padding-top: 20px;">
+                    <label for="tiempo">Kcal: &nbsp;<input type="text" name="kcal" id="kcal3" formControlName="kcal"  value="{{this.ekcal}}" style="width:120px;"> kcals</label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div style="padding-top: 20px;">
+                    <label for="fecha">Fecha: &nbsp;<input type="date" name="fecha" id="fecha" style="width: 191px;" formControlName="fecha" value="{{this.efecha}}" >
+                </label>
+                </div>
+            </div>
+        </div>
+        <div class="row" *ngIf="this.eObs!=''">
+            <div class="col-12">
+                <div style="padding-top: 20px;">
+                    <label for="obs">Observaciones: &nbsp;<input type="text" name="obs" id="obs" style="width: 140px;" value="{{this.eObs}}" disabled >
+                </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <div style="padding-top: 20px;">
+                    <label for="ejercicio">Alimento: &nbsp; <input list="browsers" name="myBrowser" id="alimento" style="width: 190px;" />
+                    <datalist id="browsers" >
+                        <option *ngFor="let item of alimentos" data-value="{{item.nombre}} | Gramos:{{item.cantidad}} | Kcal: {{item.kcal}} | {{item.id}}"></option>
+                    </datalist>
+                </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <div style="text-align: center; margin-top: 5px">
+                    <button (click)="modal()" style="margin-left: 100px; background-color: #232a68; color: white; border: none; padding: 8px; font-size: 15px;">
+                        Crear
+                    </button>&nbsp;&nbsp;
+                    <button (click)="mete()" style="background-color: darkgray; color: white; border: none; padding: 30px;padding: 8px; font-size: 15px;">
+                        Añadir
+                    </button>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="row" style="text-align: -webkit-center; color: #232a68;">
+            <h3 style="margin: 10px">Alimentos</h3>
+        </div>
+        <div class="row">
+            <div class="row" style="text-align: -webkit-center;">
+                <table style=" text-align: center; padding: 1em 0.1em; border-radius: 25px; background-color: #232a68;  width: 355px; color: white; margin-top: 10px;">
+                    <tr style="background-color: white; color:#232a68;">
+                        <td style="width:30%; padding : 4px;     border-radius: 20px;">
+                            Alimento
+                        </td>
+                        <td style="width: 15%;     border-radius: 20px;">
+                            Cantidad
+                        </td>
+                        <td style="width: 15%;     border-radius: 20px;">
+                            KCAL
+                        </td>
+                        <td style="width: 20% ;     border-radius: 20px;"> Borrar</td>
+                    </tr>
+                    <tr *ngFor="let ita of alis" style="margin-top: 10px; border-radius: 20px;">
+                        <td style="width:30%">
+                            {{ita.nombre}}
+                        </td>
+                        <td>
+                            {{ita.cantidad}}
+                        </td>
+                        <td>
+                            {{ita.kcal}}
+                        </td>
+                        <td>
+                            <span (click)="borra(ita.id)" class="material-symbols-outlined" style="color: darkgray;     font-size: 30px;">
+                                cancel
+                                </span>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <div style="position: fixed;
+                left: 135px;
+                bottom: 80px;
+             text-align: center; padding-top: 20px;">
+                    <button class="button-40 input-submit" role="button" (click)="crearEntreno()">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

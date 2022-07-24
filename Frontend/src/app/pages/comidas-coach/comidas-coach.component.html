@@ -22,8 +22,16 @@
     </div>
 
     <div class="row" *ngFor="let item of lista">
-        <div style="text-align: center; padding-top: 20px;">
-            <button [ngStyle]="{'background-color': item.hecho? 'green': '#232a68'}" routerLinkActive="router-link-active" class="button-40 input-submit" role="button">{{item.tipo}}</button>
+        <div style="    justify-content: center;
+        text-align: center;
+        padding-top: 20px;
+        display: flex;">
+            <button (click)="edit(item.id)" [ngStyle]="{'background-color': item.hecho? 'green': '#232a68'}" routerLinkActive="router-link-active" class="button-40 input-submit" role="button" style="width:276px ;">{{item.tipo}} | {{item.fecha}}</button>
+            <button role="button" style="    border: none;
+            width: 47px;
+            background-color: red;
+            border-radius: 15px;"><span (click)="deletes(item.id)" style="color: white;
+                font-size: 20px;" class="material-symbols-outlined">delete</span></button>
         </div>
     </div>
 </div>

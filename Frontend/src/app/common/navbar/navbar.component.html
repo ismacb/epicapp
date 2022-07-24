@@ -20,16 +20,17 @@
 
 <div class="main-container" id="nav" *ngIf="this.token != null && this.rol == 'ENTRENADOR'">
     <div class="row">
-        <div class="col" id="home" [routerLink]="['/home-coach']">
+
+        <div class="col" id="home" (click)="clicka('home')" [routerLink]="['/home-coach']" [ngStyle]="{'background-color': ((this.pag.includes('home')) || (this.pag.includes('entreno')) || (this.pag.includes('comida'))) ? 'darkgray' : '#232a68', 'color': (!this.pag.includes('home') && (!this.pag.includes('entreno')) && (!this.pag.includes('comida'))) ? 'darkgray' : '#232a68'}">
             <span class="material-symbols-outlined" id="homes">home</span>
         </div>
-        <div class="col" [routerLink]="['/social']">
+        <div class="col" [routerLink]="['/social']" (click)="clicka('group')" id="group">
             <span class="material-symbols-outlined">group</span>
         </div>
-        <div class="col" [routerLink]="['/chat']">
+        <div class="col" [routerLink]="['/chat']" (click)="clicka('sms')" id="sms" [ngStyle]="{'background-color': ((this.pag.includes('chat')) || (this.pag.includes('conver'))) ? 'darkgray' : '#232a68', 'color': ((!this.pag.includes('chat')) && (!this.pag.includes('conver'))) ? 'darkgray' : '#232a68'}">
             <span class="material-symbols-outlined">sms</span>
         </div>
-        <div class="col" [routerLink]="['/perfil']">
+        <div class="col" [routerLink]="['/perfil']" (click)="clicka('perfil')" id="perfil">
             <span class="material-symbols-outlined">account_circle</span>
         </div>
     </div>

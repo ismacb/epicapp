@@ -37,7 +37,6 @@ export class EstadisticasComponent implements OnInit {
   });
 
   ngOnInit(): void {
-    debugger;
     if (window.location.href.split("=").length>1){
       this.id= parseInt(window.location.href.split("=")[1]);
       this.viene = "en";
